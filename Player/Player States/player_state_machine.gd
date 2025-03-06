@@ -15,12 +15,23 @@ func _ready():
 			state.init(player)
 			state_dictionary[state.state_name] = state
 
-	set_state(starting_state)
+	# Set the starting state
+	if starting_state != null:
+		set_state(starting_state.name)
+	else:
+		push_error("No starting state set for player state machine! Defaulting to first state in the state dictionary.")
+		set_state(state_dictionary.keys()[0])
 
-func set_state(state: PlayerState):
+
+func set_state(state: String) -> void:
+	if !state_dictionary.has(state):
+		push_error("State " + state + " does not exist in the state dictionary!")
+		return
+
 	if current_state != null:
 		current_state.exit()
-	current_state = state
+		
+	current_state = state_dictionary[state]
 	current_state.enter()
 
 func _physics_process(_delta):
