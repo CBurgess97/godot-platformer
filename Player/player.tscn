@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c5tcypado87g6" path="res://icon.svg" id="5_00tjw"]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(102, 154)
 script = ExtResource("1_k53q1")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
