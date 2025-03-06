@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bd7qkrisyy24f"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+
+[node name="PlayerIdleState" type="Node" parent="PlayerStateMachine"]
+
+[node name="PlayerMovementComponent" type="Node" parent="."]
