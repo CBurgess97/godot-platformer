@@ -22,6 +22,9 @@ script = ExtResource("3_vtle1")
 
 [node name="PlayerMovementComponent" type="Node" parent="."]
 script = ExtResource("4_od3ui")
+speed = 600.0
+gravity = 500.0
+friction = 6000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.305, 0.305)
