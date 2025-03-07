@@ -12,19 +12,39 @@ class_name PlayerMovementComponent
 var velocity: Vector2 = Vector2.ZERO
 var direction: float = 0.0
 
+var coyote_timer : Timer # Reference to the coyote timer
+var coyote_jump_available := true
+
+
 @onready var character: CharacterBody2D = get_parent()
 
+func _ready() -> void:
+    # Set up coyote timer
+    coyote_timer = Timer.new()
+    coyote_timer.wait_time = coyote_time
+    coyote_timer.one_shot = true
+    add_child(coyote_timer)
+    coyote_timer.timeout.connect(coyote_timeout)
 
 func move_player(delta, new_direction : float) -> void:
 
     # Update Movement Direction
     direction = new_direction
 
-    # Handle horizontal movement
     update_horizontal_movement(delta)
 
-    # Handle vertical movement
-    update_vertical_movement(delta)
+    if Input.is_action_just_pressed("ui_up"):
+        try_jump()
+
+    # Apply gravity and reset coyote timer
+    if character.is_on_floor():
+        coyote_jump_available = true
+        coyote_timer.stop()
+    else:
+        if coyote_jump_available:
+            if coyote_timer.is_stopped():
+                coyote_timer.start()
+        apply_gravity(delta)
 
     # Apply movement
     character.velocity = velocity
@@ -36,11 +56,13 @@ func update_horizontal_movement(delta: float) -> void:
     else:
         velocity.x = move_toward(velocity.x, 0, friction * delta)
 
-func update_vertical_movement(delta: float) -> void:
-
-    # Handle jumping
-    if Input.is_action_just_pressed("ui_up"):
-        velocity.y = jump_velocity
-
+func apply_gravity(delta: float) -> void:
     # Apply gravity
     velocity.y += gravity * delta
+
+func try_jump() -> void:
+    if coyote_jump_available:
+        velocity.y = jump_velocity
+
+func coyote_timeout() -> void:
+    coyote_jump_available = false
