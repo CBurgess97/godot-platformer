@@ -12,6 +12,7 @@ class_name PlayerMovementComponent
 var velocity: Vector2 = Vector2.ZERO
 var direction: float = 0.0
 
+var input_buffer : Timer # Reference to the input queue timer
 var coyote_timer : Timer # Reference to the coyote timer
 var coyote_jump_available := true
 
@@ -19,6 +20,12 @@ var coyote_jump_available := true
 @onready var character: CharacterBody2D = get_parent()
 
 func _ready() -> void:
+    # Set up input buffer timer
+    input_buffer = Timer.new()
+    input_buffer.wait_time = jump_buffer_time
+    input_buffer.one_shot = true
+    add_child(input_buffer)
+
     # Set up coyote timer
     coyote_timer = Timer.new()
     coyote_timer.wait_time = coyote_time
@@ -27,14 +34,14 @@ func _ready() -> void:
     coyote_timer.timeout.connect(coyote_timeout)
 
 func move_player(delta, new_direction : float) -> void:
+    var jump_attempted := Input.is_action_just_pressed("ui_up")
 
     # Update Movement Direction
     direction = new_direction
 
     update_horizontal_movement(delta)
 
-    if Input.is_action_just_pressed("ui_up"):
-        try_jump()
+    process_jump(jump_attempted)
 
     # Apply gravity and reset coyote timer
     if character.is_on_floor():
@@ -60,9 +67,13 @@ func apply_gravity(delta: float) -> void:
     # Apply gravity
     velocity.y += gravity * delta
 
-func try_jump() -> void:
-    if coyote_jump_available:
-        velocity.y = jump_velocity
+func process_jump(jump_attempted) -> void:
+    if jump_attempted or input_buffer.time_left > 0:
+        if coyote_jump_available: # If jumping on the ground
+            velocity.y = jump_velocity
+            coyote_jump_available = false
+        elif jump_attempted: # Queue input buffer if jump was attempted
+            input_buffer.start()
 
 func coyote_timeout() -> void:
     coyote_jump_available = false
