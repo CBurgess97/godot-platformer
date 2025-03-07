@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://ch4fn16ilr8ya" path="res://Player/Player States/player_state_machine.gd" id="2_fhl08"]
 [ext_resource type="Script" uid="uid://dddba1ll76pke" path="res://Player/Player States/player_idle_state.gd" id="3_vtle1"]
 [ext_resource type="Script" uid="uid://bfkuqx47iq0cy" path="res://Player/Player Components/player_movement_component.gd" id="4_od3ui"]
-[ext_resource type="Texture2D" uid="uid://c5tcypado87g6" path="res://icon.svg" id="5_00tjw"]
+[ext_resource type="SpriteFrames" uid="uid://dw5j76iikoru7" path="res://Resources/little_knight.tres" id="5_k53q1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
-radius = 14.0
-height = 36.0
+radius = 6.0
+height = 16.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="CollisionShape2D" type="CharacterBody2D"]
 script = ExtResource("1_k53q1")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
@@ -26,9 +26,10 @@ speed = 600.0
 gravity = 500.0
 friction = 6000.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.305, 0.305)
-texture = ExtResource("5_00tjw")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k53q1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 0)
+sprite_frames = ExtResource("5_k53q1")
+animation = &"idle"
