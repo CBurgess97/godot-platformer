@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
 radius = 6.0
-height = 16.0
+height = 18.0
 
 [node name="CollisionShape2D" type="CharacterBody2D"]
 script = ExtResource("1_k53q1")
@@ -23,10 +23,13 @@ script = ExtResource("3_vtle1")
 [node name="PlayerMovementComponent" type="Node" parent="."]
 script = ExtResource("4_od3ui")
 speed = 600.0
-gravity = 500.0
+jump_velocity = -100.0
+gravity = 200.0
+acceleration = 1000.0
 friction = 6000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_k53q1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
