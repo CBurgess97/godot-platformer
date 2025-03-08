@@ -14,7 +14,10 @@ class_name PlayerMovementComponent
 @export var jump_velocity: float = -200.0
 @export var gravity: float = 500.0
 @export var fall_gravity_multiplier: float = 1.1
+@export var jump_peak_gravity_modifier: float = 0.5
 @export var jump_cut_multiplier: float = 0.5
+@export var peak_jump_speed_multiplier: float = 1.2
+@export var gravity_clamp: float = 300.0
 @export var mandatory_jump_time: float = 0.1
 
 @export_category("Input")
@@ -59,7 +62,7 @@ func move_player(delta, new_direction : float) -> void:
 	# Update Movement Direction
 	direction = new_direction
 	update_horizontal_velocity(delta)
-	process_jump()
+	update_vertical_velocity(delta)
 	jump_attempted = false
 
 	# Apply gravity and reset coyote timer
@@ -70,7 +73,6 @@ func move_player(delta, new_direction : float) -> void:
 		if coyote_jump_available:
 			if coyote_timer.is_stopped():
 				coyote_timer.start()
-		apply_gravity(delta)
 
 	# Apply movement
 	character.velocity = velocity
@@ -89,13 +91,16 @@ func update_horizontal_velocity(delta: float) -> void:
 		var amount = min(abs(velocity.x), abs(friction))
 		amount *= sign(velocity.x)
 		velocity.x += -amount
+	
+	if is_at_jump_peak():
+		movement *= peak_jump_speed_multiplier
 
 	velocity.x += movement * delta
 
-func apply_gravity(delta: float) -> void:
-	velocity.y += gravity * delta
+func update_vertical_velocity(delta) -> void:
 
-func process_jump() -> void:
+	var current_gravity = gravity
+
 	if jump_attempted or input_buffer.time_left > 0:
 		if coyote_jump_available: # If jumping on the ground
 			mandatory_jump_timer.start()
@@ -115,9 +120,20 @@ func process_jump() -> void:
 
 	if is_jumping and velocity.y > 0:
 		velocity.y = velocity.y * fall_gravity_multiplier
+	
+	if is_at_jump_peak():
+		current_gravity *= jump_peak_gravity_modifier
+
+	#apply gravity
+	velocity.y += current_gravity * delta
+	if velocity.y > gravity_clamp:
+		velocity.y = gravity_clamp
 
 func coyote_timeout() -> void:
 	coyote_jump_available = false
+
+func is_at_jump_peak() -> bool:
+	return (is_jumping and (velocity.y > -10 and velocity.y < 10))
 
 func jump() -> void:
 	velocity.y = jump_velocity
