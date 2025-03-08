@@ -1,30 +1,36 @@
 extends Node
 class_name PlayerMovementComponent
 
+# Movement Parameters
+@export_category("Movement")
 @export var speed: float = 20.0
-@export var jump_velocity: float = -100.0
-@export var gravity: float = 50.0
-@export var fall_gravity_multiplier: float = 1.1
 @export var acceleration: float = 10.0
 @export var deceleration: float = 10.0
 @export var friction: float = 30.0
+@export var velocity_power: float = 1.0
+
+# Jump Parameters
+@export_category("Jump")
+@export var jump_velocity: float = -100.0
+@export var gravity: float = 50.0
+@export var fall_gravity_multiplier: float = 1.1
+@export var jump_cut_multiplier: float = 0.5
 @export var coyote_time: float = 0.1
 @export var hop_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
-@export var velocity_power: float = 1.0
-@export var jump_cut_multiplier: float = 0.5
 
-var velocity: Vector2 = Vector2.ZERO
+# Internal State
+var velocity := Vector2.ZERO
 var direction: float = 0.0
-
-var input_buffer : Timer # Reference to the input queue timer
-var coyote_timer : Timer # Reference to the coyote timer
-var hop_timer : Timer # Reference to the hop timer
-var coyote_jump_available := true
-
 var facing_right := true
 var is_jumping := false
 var jump_attempted := false
+var coyote_jump_available := true
+
+# Timer References
+var input_buffer: Timer
+var coyote_timer: Timer
+var hop_timer: Timer
 
 
 @onready var character: Player = get_parent()

@@ -23,10 +23,10 @@ script = ExtResource("3_vtle1")
 [node name="PlayerMovementComponent" type="Node" parent="."]
 script = ExtResource("4_od3ui")
 speed = 200.0
-jump_velocity = -200.0
-gravity = 500.0
 friction = 90.0
 velocity_power = 0.9
+jump_velocity = -200.0
+gravity = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k53q1")
