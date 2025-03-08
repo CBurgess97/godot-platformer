@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d0apchpk7yk1g"]
 
 [ext_resource type="PackedScene" uid="uid://bd7qkrisyy24f" path="res://Player/player.tscn" id="1_wbfu4"]
-[ext_resource type="Script" uid="uid://ba6yv38xij2ey" path="res://level_manager.gd" id="2_sb48q"]
+[ext_resource type="Script" uid="uid://ba6yv38xij2ey" path="res://Levels/level_manager.gd" id="2_sb48q"]
 [ext_resource type="Script" uid="uid://b2h6bu434fnig" path="res://camera_2d.gd" id="2_u44n3"]
 [ext_resource type="Script" uid="uid://ctxhgryt0aebp" path="res://background.gd" id="4_sb48q"]
 [ext_resource type="Script" uid="uid://dc3udo8cqrvmy" path="res://debug_line.gd" id="5_t88pq"]
@@ -21,8 +21,8 @@ texture_filter = 1
 position = Vector2(326, 328)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(392.875, 322.74)
-zoom = Vector2(3.92, 3.92)
+position = Vector2(392.95, 322.74)
+zoom = Vector2(3.345, 3.345)
 script = ExtResource("2_u44n3")
 target = NodePath("../Player")
 damping = 10.0
@@ -46,6 +46,7 @@ pivot_offset = Vector2(5.55, 0)
 texture = SubResource("GradientTexture2D_u44n3")
 
 [node name="DebugLine" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
+visible = false
 script = ExtResource("5_t88pq")
 target_node = NodePath("../Player")
 trail_length = 400
