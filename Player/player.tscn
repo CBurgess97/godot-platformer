@@ -26,6 +26,7 @@ script = ExtResource("3_vtle1")
 
 [node name="PlayerMovementComponent" type="Node" parent="."]
 script = ExtResource("4_od3ui")
+friction = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
