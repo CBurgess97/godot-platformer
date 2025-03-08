@@ -4,6 +4,7 @@ class_name PlayerMovementComponent
 @export var speed: float = 20.0
 @export var jump_velocity: float = -100.0
 @export var gravity: float = 50.0
+@export var fall_gravity_multiplier: float = 1.1
 @export var acceleration: float = 10.0
 @export var deceleration: float = 10.0
 @export var friction: float = 30.0
@@ -87,14 +88,16 @@ func process_jump(jump_attempted) -> void:
 			coyote_jump_available = false
 		elif jump_attempted: # Queue input buffer if jump was attempted
 			input_buffer.start()
-			
+
 	# Cut jump short if jump button is released
 	if is_jumping and not Input.is_action_pressed("ui_up"):
-		velocity.y = velocity.y * (1 - jump_cut_multiplier)
+		velocity.y = max(velocity.y * (1 - jump_cut_multiplier), velocity.y)
+
+	if is_jumping and velocity.y > 0 and character.is_on_floor():
 		is_jumping = false
 
 	if is_jumping and velocity.y > 0:
-		is_jumping = false
+		velocity.y = velocity.y * fall_gravity_multiplier
 
 
 func coyote_timeout() -> void:
