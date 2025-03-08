@@ -36,9 +36,9 @@ player = NodePath("../../Player")
 
 [node name="TextureRect" type="TextureRect" parent="LevelManager/Node2D"]
 z_index = -2
-offset_left = -200.0
-offset_top = -96.0
-offset_right = 249.0
-offset_bottom = 141.0
+offset_left = -225.0
+offset_top = -121.0
+offset_right = 224.0
+offset_bottom = 116.0
 pivot_offset = Vector2(5.55, 0)
 texture = SubResource("GradientTexture2D_u44n3")

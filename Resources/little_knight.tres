@@ -14,13 +14,13 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("1_rgl5v")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ggi2y"]
-atlas = ExtResource("1_rgl5v")
-region = Rect2(16, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5g64"]
 atlas = ExtResource("1_rgl5v")
 region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggi2y"]
+atlas = ExtResource("1_rgl5v")
+region = Rect2(16, 0, 16, 16)
 
 [resource]
 animations = [{
@@ -50,10 +50,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ggi2y")
+"texture": SubResource("AtlasTexture_l5g64")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l5g64")
+"texture": SubResource("AtlasTexture_ggi2y")
 }],
 "loop": true,
 "name": &"walk",
