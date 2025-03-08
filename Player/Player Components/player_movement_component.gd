@@ -74,7 +74,15 @@ func update_horizontal_movement(delta: float) -> void:
 	# Calculate movement based on the difference in speed and acceleration rate
 	var movement = pow(abs(speed_diff) * accel_rate, velocity_power) * sign(speed_diff)
 
+
+	# Apply friction if we are not accelerating
+	if character.is_on_floor() and direction == 0:
+		var amount = min(abs(velocity.x), abs(friction))
+		amount *= sign(velocity.x)
+		velocity.x += -amount
+
 	velocity.x += movement * delta
+
 
 func apply_gravity(delta: float) -> void:
 	# Apply gravity
