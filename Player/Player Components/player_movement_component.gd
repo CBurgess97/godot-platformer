@@ -64,14 +64,14 @@ func move_player(delta, new_direction : float) -> void:
 
 func update_horizontal_movement(delta: float) -> void:
 	var targetSpeed = direction * speed
+	# Calculate Difference between target speed and current speed
 	var speed_diff = targetSpeed - velocity.x
+	# Calculate acceleration rate based on whether we are accelerating or decelerating
 	var accel_rate = acceleration if abs(targetSpeed) > 0.01 else deceleration
+	# Calculate movement based on the difference in speed and acceleration rate
 	var movement = pow(abs(speed_diff) * accel_rate, velocity_power) * sign(speed_diff)
+	
 	velocity.x += movement * delta
-	#if direction:
-	#	velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
-	#else:
-	#	velocity.x = move_toward(velocity.x, 0, friction * delta)
 
 func apply_gravity(delta: float) -> void:
 	# Apply gravity
