@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd7qkrisyy24f"]
+[gd_scene load_steps=8 format=3 uid="uid://bd7qkrisyy24f"]
 
 [ext_resource type="Script" uid="uid://bqt1arvvcsf8t" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://ch4fn16ilr8ya" path="res://Player/Player States/player_state_machine.gd" id="2_fhl08"]
 [ext_resource type="Script" uid="uid://dddba1ll76pke" path="res://Player/Player States/player_idle_state.gd" id="3_vtle1"]
 [ext_resource type="Script" uid="uid://bfkuqx47iq0cy" path="res://Player/Player Components/player_movement_component.gd" id="4_od3ui"]
 [ext_resource type="SpriteFrames" uid="uid://dw5j76iikoru7" path="res://Resources/little_knight.tres" id="5_k53q1"]
+[ext_resource type="Script" uid="uid://b1w1sm4it6t4u" path="res://Player/player_animation_component.gd" id="6_fhl08"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
 radius = 4.0
@@ -22,11 +23,6 @@ script = ExtResource("3_vtle1")
 
 [node name="PlayerMovementComponent" type="Node" parent="."]
 script = ExtResource("4_od3ui")
-speed = 200.0
-friction = 90.0
-velocity_power = 0.9
-jump_velocity = -200.0
-gravity = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k53q1")
@@ -35,3 +31,6 @@ shape = SubResource("CapsuleShape2D_k53q1")
 position = Vector2(-2, -1)
 sprite_frames = ExtResource("5_k53q1")
 animation = &"idle"
+
+[node name="PlayerAnimationComponent" type="Node" parent="."]
+script = ExtResource("6_fhl08")

@@ -22,7 +22,6 @@ class_name PlayerMovementComponent
 # Internal State
 var velocity := Vector2.ZERO
 var direction: float = 0.0
-var facing_right := true
 var is_jumping := false
 var jump_attempted := false
 var coyote_jump_available := true
@@ -77,7 +76,6 @@ func move_player(delta, new_direction : float) -> void:
 	# Apply movement
 	character.velocity = velocity
 	character.move_and_slide()
-	update_animation()
 
 func update_horizontal_velocity(delta: float) -> void:
 	var targetSpeed = direction * speed
@@ -128,24 +126,3 @@ func jump() -> void:
 
 func attempt_jump() -> void:
 	jump_attempted = true
-
-func update_animation() -> void:
-	if character.is_on_floor():
-		if abs(velocity.x) > 10:
-			character.animation.play("walk")
-		else:
-			character.animation.play("idle")
-	else:
-		if velocity.y < 0:
-			character.animation.play("jump")
-		else:
-			character.animation.play("fall")
-			
-	if facing_right and velocity.x < -10:
-		facing_right = false
-		character.animation.flip_h = true
-	elif not facing_right and velocity.x > 10:
-		facing_right = true
-		character.animation.flip_h = false
-
-
