@@ -9,6 +9,7 @@ class_name PlayerMovementComponent
 @export var deceleration: float = 10.0
 @export var friction: float = 30.0
 @export var coyote_time: float = 0.1
+@export var hop_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
 @export var velocity_power: float = 1.0
 @export var jump_cut_multiplier: float = 0.5
@@ -18,6 +19,7 @@ var direction: float = 0.0
 
 var input_buffer : Timer # Reference to the input queue timer
 var coyote_timer : Timer # Reference to the coyote timer
+var hop_timer : Timer # Reference to the hop timer
 var coyote_jump_available := true
 
 var facing_right := true
@@ -40,6 +42,12 @@ func _ready() -> void:
 	coyote_timer.one_shot = true
 	add_child(coyote_timer)
 	coyote_timer.timeout.connect(coyote_timeout)
+
+	# Set up hop timer
+	hop_timer = Timer.new()
+	hop_timer.wait_time = hop_time
+	hop_timer.one_shot = true
+	add_child(hop_timer)
 
 func move_player(delta, new_direction : float) -> void:
 	# Update Movement Direction
@@ -64,6 +72,7 @@ func move_player(delta, new_direction : float) -> void:
 	character.velocity = velocity
 	update_animation()
 	character.move_and_slide()
+	print(hop_timer.time_left)
 
 func update_horizontal_movement(delta: float) -> void:
 	var targetSpeed = direction * speed
@@ -91,6 +100,7 @@ func apply_gravity(delta: float) -> void:
 func process_jump() -> void:
 	if jump_attempted or input_buffer.time_left > 0:
 		if coyote_jump_available: # If jumping on the ground
+			hop_timer.start()
 			jump()
 			is_jumping = true
 			coyote_jump_available = false
@@ -98,11 +108,12 @@ func process_jump() -> void:
 			input_buffer.start()
 
 	# Cut jump short if jump button is released
-	if is_jumping and not Input.is_action_pressed("ui_jump"):
+	if is_jumping and hop_timer.time_left == 0 and not Input.is_action_pressed("ui_jump"):
 		velocity.y = max(velocity.y * (1 - jump_cut_multiplier), velocity.y)
 
 	if is_jumping and velocity.y > 0 and character.is_on_floor():
 		is_jumping = false
+		hop_timer.stop()
 
 	if is_jumping and velocity.y > 0:
 		velocity.y = velocity.y * fall_gravity_multiplier
