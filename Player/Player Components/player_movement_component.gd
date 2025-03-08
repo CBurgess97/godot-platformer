@@ -10,6 +10,7 @@ class_name PlayerMovementComponent
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
 @export var velocity_power: float = 1.0
+@export var jump_cut_multiplier: float = 0.5
 
 var velocity: Vector2 = Vector2.ZERO
 var direction: float = 0.0
@@ -19,6 +20,7 @@ var coyote_timer : Timer # Reference to the coyote timer
 var coyote_jump_available := true
 
 var facing_right := true
+var is_jumping := false
 
 
 @onready var character: Player = get_parent()
@@ -70,7 +72,7 @@ func update_horizontal_movement(delta: float) -> void:
 	var accel_rate = acceleration if abs(targetSpeed) > 0.01 else deceleration
 	# Calculate movement based on the difference in speed and acceleration rate
 	var movement = pow(abs(speed_diff) * accel_rate, velocity_power) * sign(speed_diff)
-	
+
 	velocity.x += movement * delta
 
 func apply_gravity(delta: float) -> void:
@@ -80,10 +82,20 @@ func apply_gravity(delta: float) -> void:
 func process_jump(jump_attempted) -> void:
 	if jump_attempted or input_buffer.time_left > 0:
 		if coyote_jump_available: # If jumping on the ground
-			velocity.y = jump_velocity
+			jump()
+			is_jumping = true
 			coyote_jump_available = false
 		elif jump_attempted: # Queue input buffer if jump was attempted
 			input_buffer.start()
+			
+	# Cut jump short if jump button is released
+	if is_jumping and not Input.is_action_pressed("ui_up"):
+		velocity.y = velocity.y * (1 - jump_cut_multiplier)
+		is_jumping = false
+
+	if is_jumping and velocity.y > 0:
+		is_jumping = false
+
 
 func coyote_timeout() -> void:
 	coyote_jump_available = false
@@ -106,3 +118,6 @@ func update_animation() -> void:
 	elif not facing_right and velocity.x > 1:
 		facing_right = true
 		character.animation.flip_h = false
+
+func jump() -> void:
+	velocity.y = jump_velocity
