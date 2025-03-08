@@ -1,13 +1,15 @@
 extends Node
 class_name PlayerMovementComponent
 
-@export var speed: float = 500.0
-@export var jump_velocity: float = -400.0
-@export var gravity: float = 1000.0
-@export var acceleration: float = 1500.0
-@export var friction: float = 1000.0
+@export var speed: float = 20.0
+@export var jump_velocity: float = -100.0
+@export var gravity: float = 50.0
+@export var acceleration: float = 10.0
+@export var deceleration: float = 10.0
+@export var friction: float = 30.0
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
+@export var velocity_power: float = 1.0
 
 var velocity: Vector2 = Vector2.ZERO
 var direction: float = 0.0
@@ -61,10 +63,15 @@ func move_player(delta, new_direction : float) -> void:
 	character.move_and_slide()
 
 func update_horizontal_movement(delta: float) -> void:
-	if direction:
-		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
-	else:
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
+	var targetSpeed = direction * speed
+	var speed_diff = targetSpeed - velocity.x
+	var accel_rate = acceleration if abs(targetSpeed) > 0.01 else deceleration
+	var movement = pow(abs(speed_diff) * accel_rate, velocity_power) * sign(speed_diff)
+	velocity.x += movement * delta
+	#if direction:
+	#	velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
+	#else:
+	#	velocity.x = move_toward(velocity.x, 0, friction * delta)
 
 func apply_gravity(delta: float) -> void:
 	# Apply gravity
@@ -83,7 +90,7 @@ func coyote_timeout() -> void:
 
 func update_animation() -> void:
 	if character.is_on_floor():
-		if abs(velocity.x) > 0:
+		if abs(velocity.x) > 5:
 			character.animation.play("walk")
 		else:
 			character.animation.play("idle")
@@ -93,9 +100,9 @@ func update_animation() -> void:
 		else:
 			character.animation.play("fall")
 			
-	if facing_right and velocity.x < 0:
+	if facing_right and velocity.x < -1:
 		facing_right = false
 		character.animation.flip_h = true
-	elif not facing_right and velocity.x > 0:
+	elif not facing_right and velocity.x > 1:
 		facing_right = true
 		character.animation.flip_h = false
