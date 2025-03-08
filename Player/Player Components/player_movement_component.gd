@@ -15,9 +15,11 @@ class_name PlayerMovementComponent
 @export var gravity: float = 500.0
 @export var fall_gravity_multiplier: float = 1.1
 @export var jump_cut_multiplier: float = 0.5
-@export var coyote_time: float = 0.1
-@export var hop_time: float = 0.1
+@export var mandatory_jump_time: float = 0.1
+
+@export_category("Input")
 @export var jump_buffer_time: float = 0.1
+@export var coyote_time: float = 0.1
 
 # Internal State
 var velocity := Vector2.ZERO
@@ -29,8 +31,7 @@ var coyote_jump_available := true
 # Timer References
 var input_buffer: Timer
 var coyote_timer: Timer
-var hop_timer: Timer
-
+var mandatory_jump_timer: Timer
 
 @onready var character: Player = get_parent()
 
@@ -49,17 +50,15 @@ func _ready() -> void:
 	coyote_timer.timeout.connect(coyote_timeout)
 
 	# Set up hop timer
-	hop_timer = Timer.new()
-	hop_timer.wait_time = hop_time
-	hop_timer.one_shot = true
-	add_child(hop_timer)
+	mandatory_jump_timer = Timer.new()
+	mandatory_jump_timer.wait_time = mandatory_jump_time
+	mandatory_jump_timer.one_shot = true
+	add_child(mandatory_jump_timer)
 
 func move_player(delta, new_direction : float) -> void:
 	# Update Movement Direction
 	direction = new_direction
-
 	update_horizontal_velocity(delta)
-
 	process_jump()
 	jump_attempted = false
 
@@ -94,13 +93,12 @@ func update_horizontal_velocity(delta: float) -> void:
 	velocity.x += movement * delta
 
 func apply_gravity(delta: float) -> void:
-	# Apply gravity
 	velocity.y += gravity * delta
 
 func process_jump() -> void:
 	if jump_attempted or input_buffer.time_left > 0:
 		if coyote_jump_available: # If jumping on the ground
-			hop_timer.start()
+			mandatory_jump_timer.start()
 			jump()
 			is_jumping = true
 			coyote_jump_available = false
@@ -108,12 +106,12 @@ func process_jump() -> void:
 			input_buffer.start()
 
 	# Cut jump short if jump button is released
-	if is_jumping and hop_timer.time_left == 0 and not Input.is_action_pressed("ui_jump"):
+	if is_jumping and mandatory_jump_timer.time_left == 0 and not Input.is_action_pressed("ui_jump"):
 		velocity.y = max(velocity.y * (1 - jump_cut_multiplier), velocity.y)
 
 	if is_jumping and velocity.y > 0 and character.is_on_floor():
 		is_jumping = false
-		hop_timer.stop()
+		mandatory_jump_timer.stop()
 
 	if is_jumping and velocity.y > 0:
 		velocity.y = velocity.y * fall_gravity_multiplier
