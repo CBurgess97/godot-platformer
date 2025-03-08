@@ -16,3 +16,6 @@ func _process(_delta: float) -> void:
 			if area.get_parent().is_in_group("level_object") and area.get_parent().has_method("interact"):
 				area.get_parent().interact()
 				return
+
+func move_to(_position: Vector2) -> void:
+	position = _position

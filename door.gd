@@ -1,5 +1,7 @@
 extends LevelObject
 class_name Door
 
+@export_file var target_scene : String
+
 func interact():
-    print("Door interacted")
+    level.level_manager.change_level(target_scene)
