@@ -3,16 +3,16 @@ class_name PlayerMovementComponent
 
 # Movement Parameters
 @export_category("Movement")
-@export var speed: float = 20.0
+@export var speed: float = 200.0
 @export var acceleration: float = 10.0
 @export var deceleration: float = 10.0
-@export var friction: float = 30.0
-@export var velocity_power: float = 1.0
+@export var friction: float = 90.0
+@export var velocity_power: float = 0.9
 
 # Jump Parameters
 @export_category("Jump")
-@export var jump_velocity: float = -100.0
-@export var gravity: float = 50.0
+@export var jump_velocity: float = -200.0
+@export var gravity: float = 500.0
 @export var fall_gravity_multiplier: float = 1.1
 @export var jump_cut_multiplier: float = 0.5
 @export var coyote_time: float = 0.1
@@ -59,13 +59,13 @@ func move_player(delta, new_direction : float) -> void:
 	# Update Movement Direction
 	direction = new_direction
 
-	update_horizontal_movement(delta)
+	update_horizontal_velocity(delta)
 
 	process_jump()
 	jump_attempted = false
 
 	# Apply gravity and reset coyote timer
-	if character.is_on_floor():
+	if character.is_on_floor() and velocity.y >= 0:
 		coyote_jump_available = true
 		coyote_timer.stop()
 	else:
@@ -76,28 +76,24 @@ func move_player(delta, new_direction : float) -> void:
 
 	# Apply movement
 	character.velocity = velocity
-	update_animation()
 	character.move_and_slide()
-	print(hop_timer.time_left)
+	update_animation()
 
-func update_horizontal_movement(delta: float) -> void:
+func update_horizontal_velocity(delta: float) -> void:
 	var targetSpeed = direction * speed
-	# Calculate Difference between target speed and current speed
+	# Difference between target speed and current speed
 	var speed_diff = targetSpeed - velocity.x
-	# Calculate acceleration rate based on whether we are accelerating or decelerating
 	var accel_rate = acceleration if abs(targetSpeed) > 0.01 else deceleration
 	# Calculate movement based on the difference in speed and acceleration rate
-	var movement = pow(abs(speed_diff) * accel_rate, velocity_power) * sign(speed_diff)
+	var movement = pow(abs(speed_diff) * accel_rate, velocity_power) * sign(speed_diff) 
 
-
-	# Apply friction if we are not accelerating
+	# Apply ground friction
 	if character.is_on_floor() and direction == 0:
 		var amount = min(abs(velocity.x), abs(friction))
 		amount *= sign(velocity.x)
 		velocity.x += -amount
 
 	velocity.x += movement * delta
-
 
 func apply_gravity(delta: float) -> void:
 	# Apply gravity
@@ -124,9 +120,14 @@ func process_jump() -> void:
 	if is_jumping and velocity.y > 0:
 		velocity.y = velocity.y * fall_gravity_multiplier
 
-
 func coyote_timeout() -> void:
 	coyote_jump_available = false
+
+func jump() -> void:
+	velocity.y = jump_velocity
+
+func attempt_jump() -> void:
+	jump_attempted = true
 
 func update_animation() -> void:
 	if character.is_on_floor():
@@ -147,8 +148,4 @@ func update_animation() -> void:
 		facing_right = true
 		character.animation.flip_h = false
 
-func jump() -> void:
-	velocity.y = jump_velocity
 
-func attempt_jump() -> void:
-	jump_attempted = true
