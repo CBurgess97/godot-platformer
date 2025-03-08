@@ -22,6 +22,7 @@ var coyote_jump_available := true
 
 var facing_right := true
 var is_jumping := false
+var jump_attempted := false
 
 
 @onready var character: Player = get_parent()
@@ -41,14 +42,13 @@ func _ready() -> void:
 	coyote_timer.timeout.connect(coyote_timeout)
 
 func move_player(delta, new_direction : float) -> void:
-	var jump_attempted := Input.is_action_just_pressed("ui_up")
-
 	# Update Movement Direction
 	direction = new_direction
 
 	update_horizontal_movement(delta)
 
-	process_jump(jump_attempted)
+	process_jump()
+	jump_attempted = false
 
 	# Apply gravity and reset coyote timer
 	if character.is_on_floor():
@@ -88,7 +88,7 @@ func apply_gravity(delta: float) -> void:
 	# Apply gravity
 	velocity.y += gravity * delta
 
-func process_jump(jump_attempted) -> void:
+func process_jump() -> void:
 	if jump_attempted or input_buffer.time_left > 0:
 		if coyote_jump_available: # If jumping on the ground
 			jump()
@@ -98,7 +98,7 @@ func process_jump(jump_attempted) -> void:
 			input_buffer.start()
 
 	# Cut jump short if jump button is released
-	if is_jumping and not Input.is_action_pressed("ui_up"):
+	if is_jumping and not Input.is_action_pressed("ui_jump"):
 		velocity.y = max(velocity.y * (1 - jump_cut_multiplier), velocity.y)
 
 	if is_jumping and velocity.y > 0 and character.is_on_floor():
@@ -113,7 +113,7 @@ func coyote_timeout() -> void:
 
 func update_animation() -> void:
 	if character.is_on_floor():
-		if abs(velocity.x) > 5:
+		if abs(velocity.x) > 10:
 			character.animation.play("walk")
 		else:
 			character.animation.play("idle")
@@ -123,12 +123,15 @@ func update_animation() -> void:
 		else:
 			character.animation.play("fall")
 			
-	if facing_right and velocity.x < -1:
+	if facing_right and velocity.x < -10:
 		facing_right = false
 		character.animation.flip_h = true
-	elif not facing_right and velocity.x > 1:
+	elif not facing_right and velocity.x > 10:
 		facing_right = true
 		character.animation.flip_h = false
 
 func jump() -> void:
 	velocity.y = jump_velocity
+
+func attempt_jump() -> void:
+	jump_attempted = true
