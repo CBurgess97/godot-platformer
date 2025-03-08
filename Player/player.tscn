@@ -7,9 +7,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dw5j76iikoru7" path="res://Resources/little_knight.tres" id="5_k53q1"]
 [ext_resource type="Script" uid="uid://b1w1sm4it6t4u" path="res://Player/player_animation_component.gd" id="6_fhl08"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
-radius = 3.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhl08"]
+size = Vector2(8, 17)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhl08"]
 radius = 7.0
@@ -27,10 +26,16 @@ script = ExtResource("3_vtle1")
 [node name="PlayerMovementComponent" type="Node" parent="."]
 script = ExtResource("4_od3ui")
 friction = 10.0
+jump_velocity = -220.0
+gravity = 400.0
+fall_gravity_multiplier = 1.05
+jump_peak_gravity_modifier = 0.9
+jump_cut_multiplier = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
-shape = SubResource("CapsuleShape2D_k53q1")
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_fhl08")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

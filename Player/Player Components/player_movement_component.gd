@@ -12,9 +12,9 @@ class_name PlayerMovementComponent
 # Jump Parameters
 @export_category("Jump")
 @export var jump_velocity: float = -200.0
-@export var gravity: float = 500.0
-@export var fall_gravity_multiplier: float = 1.1
-@export var jump_peak_gravity_modifier: float = 0.5
+@export var gravity: float = 150.0
+@export var fall_gravity_multiplier: float = 1.5
+@export var jump_peak_gravity_modifier: float = 0.8
 @export var jump_cut_multiplier: float = 0.5
 @export var peak_jump_speed_multiplier: float = 1.2
 @export var gravity_clamp: float = 300.0
@@ -124,10 +124,14 @@ func update_vertical_velocity(delta) -> void:
 	if is_at_jump_peak():
 		current_gravity *= jump_peak_gravity_modifier
 
-	#apply gravity
-	velocity.y += current_gravity * delta
+	if not character.is_on_floor():
+		velocity.y += (current_gravity * delta)
+	elif velocity.y > 0:
+		velocity.y = 0
+
 	if velocity.y > gravity_clamp:
 		velocity.y = gravity_clamp
+	
 
 func coyote_timeout() -> void:
 	coyote_jump_available = false
