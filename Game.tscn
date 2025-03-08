@@ -20,11 +20,12 @@ fill_from = Vector2(1, 1)
 texture_filter = 1
 position = Vector2(326, 328)
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(392.875, 322.74)
 zoom = Vector2(3.92, 3.92)
 script = ExtResource("2_u44n3")
-player = NodePath("../Player")
+target = NodePath("../Player")
+damping = 10.0
 
 [node name="LevelManager" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_sb48q")
