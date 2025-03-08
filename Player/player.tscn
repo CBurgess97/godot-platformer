@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd7qkrisyy24f"]
+[gd_scene load_steps=9 format=3 uid="uid://bd7qkrisyy24f"]
 
 [ext_resource type="Script" uid="uid://bqt1arvvcsf8t" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://ch4fn16ilr8ya" path="res://Player/Player States/player_state_machine.gd" id="2_fhl08"]
@@ -8,10 +8,13 @@
 [ext_resource type="Script" uid="uid://b1w1sm4it6t4u" path="res://Player/player_animation_component.gd" id="6_fhl08"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k53q1"]
-radius = 4.0
+radius = 3.0
 height = 14.0
 
-[node name="CollisionShape2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhl08"]
+radius = 7.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_k53q1")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
@@ -25,10 +28,17 @@ script = ExtResource("3_vtle1")
 script = ExtResource("4_od3ui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
 shape = SubResource("CapsuleShape2D_k53q1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-2, -1)
 sprite_frames = ExtResource("5_k53q1")
 animation = &"idle"
 script = ExtResource("6_fhl08")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_fhl08")
