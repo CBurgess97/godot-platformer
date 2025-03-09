@@ -3,7 +3,7 @@ class_name Level
 
 @export var level_name: String = ""
 
-@onready var level_manager: LevelManager = get_parent()
+@onready var level_manager: LevelManager = null
 @onready var spawn_point : Node2D = $SpawnPoint
 
 
