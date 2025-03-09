@@ -1,17 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd7qkrisyy24f"]
+[gd_scene load_steps=10 format=3 uid="uid://bd7qkrisyy24f"]
 
 [ext_resource type="Script" uid="uid://bqt1arvvcsf8t" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://ch4fn16ilr8ya" path="res://Player/Player States/player_state_machine.gd" id="2_fhl08"]
 [ext_resource type="Script" uid="uid://dddba1ll76pke" path="res://Player/Player States/player_idle_state.gd" id="3_vtle1"]
 [ext_resource type="Script" uid="uid://bfkuqx47iq0cy" path="res://Player/Player Components/player_movement_component.gd" id="4_od3ui"]
 [ext_resource type="SpriteFrames" uid="uid://dw5j76iikoru7" path="res://Resources/little_knight.tres" id="5_k53q1"]
-[ext_resource type="Script" uid="uid://b1w1sm4it6t4u" path="res://Player/player_animation_component.gd" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://b1w1sm4it6t4u" path="res://Player/Player Components/player_animation_component.gd" id="6_fhl08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhl08"]
 size = Vector2(8, 17)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhl08"]
 radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtle1"]
+radius = 2.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_k53q1")
@@ -34,6 +37,7 @@ jump_cut_multiplier = 0.3
 mandatory_jump_time = 0.05
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 z_index = 1
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_fhl08")
@@ -45,7 +49,14 @@ sprite_frames = ExtResource("5_k53q1")
 animation = &"idle"
 script = ExtResource("6_fhl08")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="."]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_fhl08")
+
+[node name="HitboxArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_vtle1")
