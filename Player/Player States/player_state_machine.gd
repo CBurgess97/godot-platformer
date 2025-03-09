@@ -23,16 +23,17 @@ func _ready():
 		set_state(state_dictionary.keys()[0])
 
 
-func set_state(state: String) -> void:
+func set_state(state: String) -> bool:
 	if !state_dictionary.has(state):
 		push_error("State " + state + " does not exist in the state dictionary!")
-		return
+		return false
 
 	if current_state != null:
 		current_state.exit()
 
 	current_state = state_dictionary[state]
 	current_state.enter()
+	return true
 
 func _physics_process(_delta):
 	if current_state != null:

@@ -21,4 +21,5 @@ target_scene = "uid://scodd5131rra"
 position = Vector2(75, 66)
 
 [node name="Spikes" parent="." instance=ExtResource("5_u1dho")]
-position = Vector2(178, 67)
+z_index = -1
+position = Vector2(173, 78)

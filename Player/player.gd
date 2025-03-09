@@ -29,3 +29,7 @@ func move_to(_position: Vector2) -> void:
 
 func take_damage() -> void:
 	print("Ouch!")
+
+func change_state(state : String) -> bool:
+	var success = state_machine.set_state(state)
+	return success
