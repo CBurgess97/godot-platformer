@@ -1,4 +1,4 @@
-extends LevelObjectComponent
+extends Node
 class_name DamageOnContactComponent
 
 
