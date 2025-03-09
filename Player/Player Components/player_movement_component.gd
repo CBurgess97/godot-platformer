@@ -20,7 +20,7 @@ class_name PlayerMovementComponent
 @export var gravity_clamp: float = 300.0
 @export var mandatory_jump_time: float = 0.1
 
-@export_category("Input")
+@export_category("Input_Buffers")
 @export var jump_buffer_time: float = 0.1
 @export var coyote_time: float = 0.1
 
@@ -58,49 +58,60 @@ func _ready() -> void:
 	mandatory_jump_timer.one_shot = true
 	add_child(mandatory_jump_timer)
 
-func move_player(delta, new_direction : float) -> void:
-	# Update Movement Direction
+func move_player(delta: float, new_direction: float) -> void:
+	# Update the movement direction based on input
 	direction = new_direction
+	
+	# Update horizontal and vertical velocities
 	update_horizontal_velocity(delta)
 	update_vertical_velocity(delta)
+	
+	# Reset jump attempt flag
 	jump_attempted = false
-
-	# Apply gravity and reset coyote timer
+	
+	# Handle coyote jump logic
 	if character.is_on_floor() and velocity.y >= 0:
+		# Player is grounded, enable coyote jump and stop the timer
 		coyote_jump_available = true
 		coyote_timer.stop()
 	else:
-		if coyote_jump_available:
-			if coyote_timer.is_stopped():
-				coyote_timer.start()
-
-	# Apply movement
+		# Player is in the air
+		if coyote_jump_available and coyote_timer.is_stopped():
+			# Start the coyote timer when first leaving the ground
+			coyote_timer.start()
+	
+	# Apply the calculated velocity to the character and move
 	character.velocity = velocity
 	character.move_and_slide()
 
 func update_horizontal_velocity(delta: float) -> void:
-	var targetSpeed = direction * speed
-	# Difference between target speed and current speed
-	var speed_diff = targetSpeed - velocity.x
-	var accel_rate = acceleration if abs(targetSpeed) > 0.01 else deceleration
-	# Calculate movement based on the difference in speed and acceleration rate
-	var movement = pow(abs(speed_diff) * accel_rate, velocity_power) * sign(speed_diff) 
+	# Determine target speed based on input direction
+	var target_speed = direction * speed
 
-	# Apply ground friction
+	# Calculate the difference between target speed and current speed
+	var speed_diff = target_speed - velocity.x
+
+	# Select acceleration or deceleration rate based on whether we're trying to move
+	var accel_rate = acceleration if abs(target_speed) > 0.01 else deceleration
+
+	# Calculate movement adjustment using a power function for smoother transitions
+	var movement = pow(abs(speed_diff) * accel_rate, velocity_power) * sign(speed_diff)
+
+	# Apply ground friction when not moving horizontally and on the ground
 	if character.is_on_floor() and direction == 0:
-		var amount = min(abs(velocity.x), abs(friction))
-		amount *= sign(velocity.x)
-		velocity.x += -amount
+		var friction_amount = min(abs(velocity.x), friction)
+		velocity.x -= friction_amount * sign(velocity.x)
 	
+	# Adjust movement speed at jump peak
 	if is_at_jump_peak():
 		movement *= peak_jump_speed_multiplier
 
+	# Update horizontal velocity
 	velocity.x += movement * delta
 
 func update_vertical_velocity(delta) -> void:
 
-	var current_gravity = gravity
-
+	# Handle jump input and initiation
 	if jump_attempted or input_buffer.time_left > 0:
 		if coyote_jump_available: # If jumping on the ground
 			mandatory_jump_timer.start()
@@ -109,26 +120,32 @@ func update_vertical_velocity(delta) -> void:
 			coyote_jump_available = false
 		elif jump_attempted: # Queue input buffer if jump was attempted
 			input_buffer.start()
+			jump_attempted = false
 
-	# Cut jump short if jump button is released
+	# Cut jump short when jump button is released during ascent
 	if is_jumping and mandatory_jump_timer.time_left == 0 and not Input.is_action_pressed("ui_jump"):
 		velocity.y = max(velocity.y * (1 - jump_cut_multiplier), velocity.y)
 
+	# Handle landing to reset jump state
 	if is_jumping and velocity.y > 0 and character.is_on_floor():
 		is_jumping = false
 		mandatory_jump_timer.stop()
-
-	if is_jumping and velocity.y > 0:
-		velocity.y = velocity.y * fall_gravity_multiplier
 	
-	if is_at_jump_peak():
-		current_gravity *= jump_peak_gravity_modifier
+	# Adjust gravity based on jump state
+	var current_gravity = gravity
+	if is_jumping:
+			if is_at_jump_peak():
+				current_gravity *= jump_peak_gravity_modifier
+			elif velocity.y > 0:
+				current_gravity *= fall_gravity_multiplier
 
+	# Apply gravity when in air, reset downward velocity when grounded
 	if not character.is_on_floor():
 		velocity.y += (current_gravity * delta)
 	elif velocity.y > 0:
 		velocity.y = 0
 
+	# Clamp maximum downward velocity
 	if velocity.y > gravity_clamp:
 		velocity.y = gravity_clamp
 	

@@ -46,7 +46,6 @@ pivot_offset = Vector2(5.55, 0)
 texture = SubResource("GradientTexture2D_u44n3")
 
 [node name="DebugLine" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
-visible = false
 script = ExtResource("5_t88pq")
 target_node = NodePath("../Player")
 trail_length = 400
