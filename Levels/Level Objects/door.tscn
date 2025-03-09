@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://yphjr527njqo"]
+[gd_scene load_steps=4 format=3 uid="uid://yphjr527njqo"]
 
 [ext_resource type="Texture2D" uid="uid://dvd3v7x6of2x2" path="res://Resources/Sprites/door.png" id="1_ba8gm"]
 [ext_resource type="Script" uid="uid://b1pd2qr674oqk" path="res://Levels/Level Objects/door.gd" id="1_v6xrn"]
-[ext_resource type="Script" uid="uid://c6dhgtwefse7k" path="res://Levels/Object Components/stage_transition.gd" id="3_ts63p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6xrn"]
 size = Vector2(14, 16)
@@ -15,7 +14,6 @@ texture_filter = 1
 texture = ExtResource("1_ba8gm")
 
 [node name="InteractArea" type="Area2D" parent="."]
-script = ExtResource("3_ts63p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
 shape = SubResource("RectangleShape2D_v6xrn")

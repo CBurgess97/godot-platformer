@@ -15,6 +15,7 @@ func _ready() -> void:
 			objects.append(child)
 
 func enter_level() -> void:
+	level_manager = get_parent()
 	for object in objects:
 		object.enter_level()
 	pass
