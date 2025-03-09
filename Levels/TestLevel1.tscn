@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://cjmty4xitway2"]
+[gd_scene load_steps=7 format=4 uid="uid://cjmty4xitway2"]
 
 [ext_resource type="TileSet" uid="uid://f6qeyrr0ddqo" path="res://Resources/tiles.tres" id="1_usvk7"]
 [ext_resource type="Script" uid="uid://uaqrhl73rrfd" path="res://Levels/level.gd" id="2_bs3lq"]
 [ext_resource type="PackedScene" uid="uid://yphjr527njqo" path="res://Levels/Level Objects/door.tscn" id="2_xy0xx"]
 [ext_resource type="PackedScene" uid="uid://e2arbawy8i33" path="res://Levels/Level Objects/Spike Ball.tscn" id="5_624pj"]
 [ext_resource type="PackedScene" uid="uid://klxhy664vtkd" path="res://Levels/Level Objects/Spikes.tscn" id="5_u1dho"]
+[ext_resource type="Script" uid="uid://b2h6bu434fnig" path="res://camera_2d.gd" id="6_624pj"]
 
 [node name="TestLevel1" type="TileMapLayer"]
 texture_filter = 1
@@ -25,3 +26,8 @@ position = Vector2(173, 78)
 
 [node name="SpikeBall" parent="." instance=ExtResource("5_624pj")]
 position = Vector2(185, 30)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(242, 25)
+zoom = Vector2(3, 3)
+script = ExtResource("6_624pj")

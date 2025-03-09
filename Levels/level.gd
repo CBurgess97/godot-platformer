@@ -5,7 +5,7 @@ class_name Level
 
 @onready var level_manager: LevelManager = null
 @onready var spawn_point : Node2D = $SpawnPoint
-
+@onready var camera : Camera2D = $Camera2D
 
 var objects: Array[LevelObject] = []
 
@@ -16,6 +16,8 @@ func _ready() -> void:
 
 func enter_level() -> void:
 	level_manager = get_parent()
+	camera.target = level_manager.player
+	camera.make_current()
 	for object in objects:
 		object.enter_level()
 	pass

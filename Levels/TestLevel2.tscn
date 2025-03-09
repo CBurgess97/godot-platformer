@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://scodd5131rra"]
+[gd_scene load_steps=5 format=4 uid="uid://scodd5131rra"]
 
 [ext_resource type="TileSet" uid="uid://f6qeyrr0ddqo" path="res://Resources/tiles.tres" id="1_o1veh"]
 [ext_resource type="Script" uid="uid://uaqrhl73rrfd" path="res://Levels/level.gd" id="2_733jg"]
 [ext_resource type="PackedScene" uid="uid://yphjr527njqo" path="res://Levels/Level Objects/door.tscn" id="2_fccse"]
+[ext_resource type="Script" uid="uid://b2h6bu434fnig" path="res://camera_2d.gd" id="4_mac7e"]
 
 [node name="TestLevel2" type="TileMapLayer"]
 texture_filter = 1
@@ -16,3 +17,8 @@ target_scene = "uid://cjmty4xitway2"
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(88, 38)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(242, 25)
+zoom = Vector2(3, 3)
+script = ExtResource("4_mac7e")
