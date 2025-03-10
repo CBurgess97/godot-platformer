@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dbabea6rcqs83" path="res://Levels/Level Objects/damage_on_contact_component.gd" id="2_rp4h5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rp4h5"]
-size = Vector2(14, 22)
+size = Vector2(16, 7.5)
 
 [node name="Spikes" type="Node2D"]
 
@@ -16,5 +16,5 @@ texture = ExtResource("1_yx6pv")
 script = ExtResource("2_rp4h5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 5)
+position = Vector2(0, 4.25)
 shape = SubResource("RectangleShape2D_rp4h5")
