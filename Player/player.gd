@@ -7,6 +7,8 @@ class_name Player
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var hitbox : Area2D = $HitboxArea
 
+var dead = false
+
 func _ready() -> void:
 	add_to_group("player")
 

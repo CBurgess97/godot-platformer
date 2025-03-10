@@ -19,6 +19,12 @@ func update_animation() -> void:
 			character.animation.play("jump")
 		else:
 			character.animation.play("fall")
+		
+	if character.dead:
+		if character.velocity.y < 0:
+			character.animation.play("dead_fall")
+		else:
+			character.animation.play("dead")
 			
 	if facing_right and character.velocity.x < -10:
 		facing_right = false

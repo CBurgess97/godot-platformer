@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t2qpe6y3ror5"
-path="res://.godot/imported/Platformer Tileset.png-5afbee9a1b3bab30d99cf27205419c1d.ctex"
+uid="uid://c1qlhheldhg3k"
+path="res://.godot/imported/Spikes.png-da2f03ae10893611569f9de9f4a338b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Platformer Tileset.png"
-dest_files=["res://.godot/imported/Platformer Tileset.png-5afbee9a1b3bab30d99cf27205419c1d.ctex"]
+source_file="res://Resources/Sprites/Objects/Spikes.png"
+dest_files=["res://.godot/imported/Spikes.png-da2f03ae10893611569f9de9f4a338b5.ctex"]
 
 [params]
 

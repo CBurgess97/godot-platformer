@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://43i25sxtnwxl"
-path="res://.godot/imported/spike ball.png-fa4618d827c1658514fa7f1728d1e9b4.ctex"
+uid="uid://ccti73xm6ek0y"
+path="res://.godot/imported/Game Mockup.png-8d1018a92f7fcbdae9feb45d197895ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/spike ball.png"
-dest_files=["res://.godot/imported/spike ball.png-fa4618d827c1658514fa7f1728d1e9b4.ctex"]
+source_file="res://Resources/Game Mockup.png"
+dest_files=["res://.godot/imported/Game Mockup.png-8d1018a92f7fcbdae9feb45d197895ed.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1qlhheldhg3k"
-path="res://.godot/imported/Spikes.png-dbfc6050dce19d3cc4a486b2a4ba28ba.ctex"
+uid="uid://72xrc10xwgnb"
+path="res://.godot/imported/Bat.png-c2bcba55a5c806786dc14f644db4cd8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Spikes.png"
-dest_files=["res://.godot/imported/Spikes.png-dbfc6050dce19d3cc4a486b2a4ba28ba.ctex"]
+source_file="res://Resources/Sprites/Enemies/Bat.png"
+dest_files=["res://.godot/imported/Bat.png-c2bcba55a5c806786dc14f644db4cd8c.ctex"]
 
 [params]
 
