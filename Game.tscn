@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://dc3udo8cqrvmy" path="res://debug_line.gd" id="5_t88pq"]
 
 [sub_resource type="Gradient" id="Gradient_xkndl"]
-offsets = PackedFloat32Array(0, 0.512987)
-colors = PackedColorArray(0.0963346, 0.395169, 0.46654, 1, 0.120437, 0.458958, 0.73168, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.964706, 0.827451, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u44n3"]
 gradient = SubResource("Gradient_xkndl")
@@ -29,7 +29,7 @@ script = ExtResource("4_sb48q")
 player = NodePath("../../Player")
 
 [node name="TextureRect" type="TextureRect" parent="LevelManager/Node2D"]
-z_index = -2
+z_index = -20
 offset_left = -727.0
 offset_top = -390.0
 offset_right = 835.0
