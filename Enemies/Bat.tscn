@@ -1,15 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxxsddmhowb2m"]
+[gd_scene load_steps=6 format=3 uid="uid://cxxsddmhowb2m"]
 
 [ext_resource type="SpriteFrames" uid="uid://bhh0fmnmgdyd3" path="res://Resources/Animations/bat.tres" id="1_bkjyk"]
 [ext_resource type="Script" uid="uid://byytkcacjptlh" path="res://Enemies/bat.gd" id="1_eneur"]
 [ext_resource type="Script" uid="uid://d1cqj7icicgdc" path="res://Enemies/stompable_enemy.gd" id="2_xa3dn"]
 [ext_resource type="Script" uid="uid://dkohlm861do2" path="res://Enemies/bat_animation.gd" id="3_ngmul"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ngmul"]
-radius = 5.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngmul"]
-radius = 4.0
+radius = 5.0
 height = 16.0
 
 [node name="Bat" type="Node2D"]
@@ -17,25 +14,18 @@ script = ExtResource("1_eneur")
 
 [node name="Stompable_Enemy" type="Node" parent="." node_paths=PackedStringArray("hitbox", "stomp_box")]
 script = ExtResource("2_xa3dn")
-hitbox = NodePath("../Hitbox")
+hitbox = NodePath("")
 stomp_box = NodePath("../Stompbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = ExtResource("1_bkjyk")
 animation = &"fly"
-frame_progress = 0.337815
+frame_progress = 0.384688
 script = ExtResource("3_ngmul")
-
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_ngmul")
 
 [node name="Stompbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stompbox"]
-position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ngmul")
