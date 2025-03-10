@@ -30,3 +30,7 @@ func change_level(level_path: String) -> void:
 
 func get_level_name() -> String:
 	return current_level.level_name
+
+func reload_current_level():
+	change_level(current_level.level_path)
+	pass

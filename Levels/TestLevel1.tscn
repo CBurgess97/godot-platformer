@@ -14,6 +14,7 @@ tile_map_data = PackedByteArray("AAD0/wAAAAAEAAMAAAD1/wAAAAAFAAMAAAD2/wAAAAAFAAM
 tile_set = ExtResource("1_624pj")
 script = ExtResource("2_bs3lq")
 level_name = "Test"
+level_path = "uid://cjmty4xitway2"
 player = NodePath("Player")
 
 [node name="Door" parent="." instance=ExtResource("2_xy0xx")]

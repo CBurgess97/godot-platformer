@@ -6,6 +6,7 @@ class_name Player
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var hitbox : Area2D = $HitboxArea
+@onready var level_manager = get_parent().level_manager
 
 var dead = false
 
@@ -38,3 +39,4 @@ func take_damage() -> void:
 func change_state(state : String) -> bool:
 	var success = state_machine.set_state(state)
 	return success
+	
