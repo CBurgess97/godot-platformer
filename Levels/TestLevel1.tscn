@@ -29,9 +29,10 @@ z_index = -1
 position = Vector2(-16, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(8, -70)
-zoom = Vector2(3, 3)
+position = Vector2(8, -40)
+zoom = Vector2(5, 5)
 script = ExtResource("6_624pj")
+damping = 10.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -5
