@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0apchpk7yk1g"]
+[gd_scene load_steps=6 format=3 uid="uid://d0apchpk7yk1g"]
 
-[ext_resource type="PackedScene" uid="uid://bd7qkrisyy24f" path="res://Player/player.tscn" id="1_wbfu4"]
 [ext_resource type="Script" uid="uid://ba6yv38xij2ey" path="res://Levels/level_manager.gd" id="2_sb48q"]
 [ext_resource type="Script" uid="uid://ctxhgryt0aebp" path="res://background.gd" id="4_sb48q"]
 [ext_resource type="Script" uid="uid://b2h6bu434fnig" path="res://camera_2d.gd" id="5_r0x5m"]
@@ -9,22 +8,16 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_wbfu4")]
-texture_filter = 1
-position = Vector2(326, 328)
-
-[node name="LevelManager" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+[node name="LevelManager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("2_sb48q")
-player = NodePath("../Player")
+camera = NodePath("../Camera2D")
 starting_level = "uid://cjmty4xitway2"
 
-[node name="Node2D" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("player")]
+[node name="Node2D" type="Node2D" parent="LevelManager"]
 script = ExtResource("4_sb48q")
-player = NodePath("../../Player")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target", "user_interface")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("user_interface")]
 script = ExtResource("5_r0x5m")
-target = NodePath("../Player")
 user_interface = NodePath("UserInterface")
 
 [node name="UserInterface" parent="Camera2D" node_paths=PackedStringArray("level_manager") instance=ExtResource("6_r0x5m")]
@@ -35,8 +28,7 @@ offset_bottom = 72.0
 level_manager = NodePath("../../LevelManager")
 metadata/_edit_use_anchors_ = true
 
-[node name="DebugLine" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
+[node name="DebugLine" type="Node2D" parent="."]
 visible = false
 script = ExtResource("5_t88pq")
-target_node = NodePath("../Player")
 trail_length = 400

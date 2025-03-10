@@ -2,9 +2,12 @@ extends TileMapLayer
 class_name Level
 
 @export var level_name: String = ""
+@export_file var level_path: String = ""
+@export var player : Player = null
 
 @onready var level_manager: LevelManager = null
 @onready var spawn_point : Node2D = $SpawnPoint
+
 
 var objects: Array[LevelObject] = []
 

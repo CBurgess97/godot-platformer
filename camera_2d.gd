@@ -20,6 +20,8 @@ func _ready():
 	user_interface.initialize()
 
 func _physics_process(delta):
+	if not target:
+		return
 	if track_vertical:
 		real_position.y = lerp(position.y, target.position.y, damping * delta)
 
