@@ -32,3 +32,8 @@ func update_animation() -> void:
 	elif not facing_right and character.velocity.x > 10:
 		facing_right = true
 		character.animation.flip_h = false
+	
+	if character.animation.flip_h:
+		character.animation.offset.x = 4
+	else:
+		character.animation.offset.x = 0
