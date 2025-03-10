@@ -13,7 +13,7 @@ func _ready() -> void:
 	add_to_group("player")
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		var areas = interaction_area.get_overlapping_areas()
 		for area in areas:
 			if area.get_parent().has_method("interact"):
