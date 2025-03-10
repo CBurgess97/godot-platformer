@@ -25,12 +25,18 @@ class_name PlayerMovementComponent
 @export var coyote_time: float = 0.1
 @export var bounce_time: float = 0.1
 
+@export_category("Death")
+@export var on_death_bounce_amount: float = 600.0
+@export var on_death_bounce_count: int = 2
+
 # Internal State
 var velocity := Vector2.ZERO
 var direction: float = 0.0
 var is_jumping := false
 var jump_attempted := false
 var coyote_jump_available := true
+var dropping := false
+var bounce_counter = 0
 
 # Timer References
 var input_buffer: Timer
@@ -67,6 +73,16 @@ func _ready() -> void:
 	add_child(bounce_timer)
 
 func move_player(delta: float, new_direction: float) -> void:
+
+	if dropping:
+		if character.is_on_floor() and not bounce_counter == 2:
+			velocity.y = -on_death_bounce_amount
+			on_death_bounce_amount *= 0.8
+			bounce_counter += 1	
+		velocity.y += (gravity * delta)
+
+
+
 	# Update the movement direction based on input
 	direction = new_direction
 	
@@ -172,6 +188,10 @@ func jump() -> void:
 
 func attempt_jump() -> void:
 	jump_attempted = true
+
+func drop() -> void:
+	dropping = true
+	velocity.y = 0
 
 func is_falling() -> bool:
 	return velocity.y > 0

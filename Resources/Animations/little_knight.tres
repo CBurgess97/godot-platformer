@@ -1,29 +1,53 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://dw5j76iikoru7"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://dw5j76iikoru7"]
 
-[ext_resource type="Texture2D" uid="uid://dbp1pdqe23dxu" path="res://Resources/Sprites/Player/Little Knight.png" id="1_rgl5v"]
+[ext_resource type="Texture2D" uid="uid://dbp1pdqe23dxu" path="res://Resources/Sprites/Player/Little Knight.png" id="1_5d8q1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i2ti"]
+atlas = ExtResource("1_5d8q1")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnqnd"]
+atlas = ExtResource("1_5d8q1")
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b7r0r"]
-atlas = ExtResource("1_rgl5v")
+atlas = ExtResource("1_5d8q1")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gruiq"]
-atlas = ExtResource("1_rgl5v")
+atlas = ExtResource("1_5d8q1")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_slm3p"]
-atlas = ExtResource("1_rgl5v")
+atlas = ExtResource("1_5d8q1")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5g64"]
-atlas = ExtResource("1_rgl5v")
+atlas = ExtResource("1_5d8q1")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ggi2y"]
-atlas = ExtResource("1_rgl5v")
+atlas = ExtResource("1_5d8q1")
 region = Rect2(16, 0, 16, 16)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i2ti")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnqnd")
+}],
+"loop": true,
+"name": &"dead_fall",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b7r0r")

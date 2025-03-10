@@ -16,7 +16,7 @@ func _on_hitbox_body_entered(body : Node) -> void:
 
 func _on_stomp_box_body_entered(body : Node) -> void:
 	if body.is_in_group("player"):
-		if body.movement.is_falling():
+		if body.movement.is_falling() and not body.dead:
 			body.movement.bounce(bounce_force)
 			if get_parent().has_method("death"):
 				get_parent().death()
