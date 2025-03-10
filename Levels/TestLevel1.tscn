@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://cjmty4xitway2"]
+[gd_scene load_steps=7 format=4 uid="uid://cjmty4xitway2"]
 
 [ext_resource type="TileSet" uid="uid://c5q4k17vfyqa0" path="res://Resources/Tiles/castle.tres" id="1_624pj"]
 [ext_resource type="Script" uid="uid://uaqrhl73rrfd" path="res://Levels/level.gd" id="2_bs3lq"]
 [ext_resource type="PackedScene" uid="uid://yphjr527njqo" path="res://Levels/Level Objects/door.tscn" id="2_xy0xx"]
+[ext_resource type="PackedScene" uid="uid://klxhy664vtkd" path="res://Levels/Level Objects/Spikes.tscn" id="5_u1dho"]
 [ext_resource type="TileSet" uid="uid://c1so64ebprpeg" path="res://Resources/Tiles/background_tileset.tres" id="6_nnp38"]
 [ext_resource type="PackedScene" uid="uid://cxxsddmhowb2m" path="res://Enemies/Bat.tscn" id="7_nnp38"]
 
@@ -15,6 +16,7 @@ level_name = "Test"
 
 [node name="Door" parent="." instance=ExtResource("2_xy0xx")]
 position = Vector2(136, -56)
+target_scene = "uid://scodd5131rra"
 
 [node name="Bat" parent="." instance=ExtResource("7_nnp38")]
 position = Vector2(70, -70)
@@ -32,3 +34,6 @@ position = Vector2(-33, -14)
 
 [node name="Bat3" parent="." instance=ExtResource("7_nnp38")]
 position = Vector2(-82, -15)
+
+[node name="Spikes" parent="." instance=ExtResource("5_u1dho")]
+position = Vector2(198, -8)
