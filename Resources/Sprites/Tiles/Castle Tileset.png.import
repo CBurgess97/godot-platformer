@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvd3v7x6of2x2"
-path="res://.godot/imported/door.png-b6b4769bb7dcda6989b94f791dc69456.ctex"
+uid="uid://cyfrsigqanr3i"
+path="res://.godot/imported/Castle Tileset.png-eb774126983f67dd79df9ff6f6f5d701.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/door.png"
-dest_files=["res://.godot/imported/door.png-b6b4769bb7dcda6989b94f791dc69456.ctex"]
+source_file="res://Resources/Sprites/Tiles/Castle Tileset.png"
+dest_files=["res://.godot/imported/Castle Tileset.png-eb774126983f67dd79df9ff6f6f5d701.ctex"]
 
 [params]
 

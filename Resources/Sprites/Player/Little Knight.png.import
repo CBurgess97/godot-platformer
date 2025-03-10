@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyfrsigqanr3i"
-path="res://.godot/imported/Castle Tileset.png-6a7aecf60e9b7699fd164800716f6bdd.ctex"
+uid="uid://dbp1pdqe23dxu"
+path="res://.godot/imported/Little Knight.png-6d0a8ca6f8beb3d56072bb5e6c9ae820.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Castle Tileset.png"
-dest_files=["res://.godot/imported/Castle Tileset.png-6a7aecf60e9b7699fd164800716f6bdd.ctex"]
+source_file="res://Resources/Sprites/Player/Little Knight.png"
+dest_files=["res://.godot/imported/Little Knight.png-6d0a8ca6f8beb3d56072bb5e6c9ae820.ctex"]
 
 [params]
 

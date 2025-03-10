@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://43i25sxtnwxl"
-path="res://.godot/imported/spike ball.png-fa4618d827c1658514fa7f1728d1e9b4.ctex"
+uid="uid://os18071mgc2s"
+path="res://.godot/imported/Castle Background Tiles.png-9439ed0f027606179f6cc86539ba6343.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/spike ball.png"
-dest_files=["res://.godot/imported/spike ball.png-fa4618d827c1658514fa7f1728d1e9b4.ctex"]
+source_file="res://Resources/Sprites/Tiles/Castle Background Tiles.png"
+dest_files=["res://.godot/imported/Castle Background Tiles.png-9439ed0f027606179f6cc86539ba6343.ctex"]
 
 [params]
 

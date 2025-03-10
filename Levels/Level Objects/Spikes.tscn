@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://klxhy664vtkd"]
 
-[ext_resource type="Texture2D" uid="uid://c1qlhheldhg3k" path="res://Resources/Sprites/Spikes.png" id="1_yx6pv"]
+[ext_resource type="Texture2D" uid="uid://c1qlhheldhg3k" path="res://Resources/Sprites/Objects/Spikes.png" id="1_yx6pv"]
 [ext_resource type="Script" uid="uid://dbabea6rcqs83" path="res://Levels/Level Objects/damage_on_contact_component.gd" id="2_rp4h5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rp4h5"]

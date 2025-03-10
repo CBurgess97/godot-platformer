@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1o7yhryxbw6o"
-path="res://.godot/imported/big door.png-26e586147a07e8b9eaa37105851a95fa.ctex"
+uid="uid://72xrc10xwgnb"
+path="res://.godot/imported/Bat.png-c2bcba55a5c806786dc14f644db4cd8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/big door.png"
-dest_files=["res://.godot/imported/big door.png-26e586147a07e8b9eaa37105851a95fa.ctex"]
+source_file="res://Resources/Sprites/Enemies/Bat.png"
+dest_files=["res://.godot/imported/Bat.png-c2bcba55a5c806786dc14f644db4cd8c.ctex"]
 
 [params]
 

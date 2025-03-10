@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbp1pdqe23dxu"
-path="res://.godot/imported/Little Knight.png-3c37cd6c5acc0bd8ecc237a715806b22.ctex"
+uid="uid://c1qlhheldhg3k"
+path="res://.godot/imported/Spikes.png-da2f03ae10893611569f9de9f4a338b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Little Knight.png"
-dest_files=["res://.godot/imported/Little Knight.png-3c37cd6c5acc0bd8ecc237a715806b22.ctex"]
+source_file="res://Resources/Sprites/Objects/Spikes.png"
+dest_files=["res://.godot/imported/Spikes.png-da2f03ae10893611569f9de9f4a338b5.ctex"]
 
 [params]
 

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dddba1ll76pke" path="res://Player/Player States/player_idle_state.gd" id="3_vtle1"]
 [ext_resource type="Script" uid="uid://bfkuqx47iq0cy" path="res://Player/Player Components/player_movement_component.gd" id="4_od3ui"]
 [ext_resource type="Script" uid="uid://scyi3nlhof4e" path="res://Player/player_death_state.gd" id="4_vtle1"]
-[ext_resource type="SpriteFrames" uid="uid://dw5j76iikoru7" path="res://Resources/little_knight.tres" id="5_k53q1"]
+[ext_resource type="SpriteFrames" uid="uid://dw5j76iikoru7" path="res://Resources/Animations/little_knight.tres" id="5_k53q1"]
 [ext_resource type="Script" uid="uid://b1w1sm4it6t4u" path="res://Player/Player Components/player_animation_component.gd" id="6_fhl08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhl08"]

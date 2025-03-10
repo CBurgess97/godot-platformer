@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxxsddmhowb2m"]
+
+[ext_resource type="SpriteFrames" uid="uid://bhh0fmnmgdyd3" path="res://Resources/Animations/bat.tres" id="1_bkjyk"]
+[ext_resource type="Script" uid="uid://dbabea6rcqs83" path="res://Levels/Level Objects/damage_on_contact_component.gd" id="1_ug2r1"]
+[ext_resource type="Script" uid="uid://dkohlm861do2" path="res://Enemies/bat_animation.gd" id="3_ngmul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ngmul"]
+radius = 7.07107
+
+[node name="Bat" type="Node2D"]
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("1_ug2r1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ngmul")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("1_bkjyk")
+animation = &"fly"
+frame_progress = 0.156347
+script = ExtResource("3_ngmul")

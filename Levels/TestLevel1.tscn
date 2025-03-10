@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://cjmty4xitway2"]
+[gd_scene load_steps=8 format=4 uid="uid://cjmty4xitway2"]
 
-[ext_resource type="TileSet" uid="uid://c5q4k17vfyqa0" path="res://Resources/castle.tres" id="1_624pj"]
+[ext_resource type="TileSet" uid="uid://c5q4k17vfyqa0" path="res://Resources/Tiles/castle.tres" id="1_624pj"]
 [ext_resource type="Script" uid="uid://uaqrhl73rrfd" path="res://Levels/level.gd" id="2_bs3lq"]
 [ext_resource type="PackedScene" uid="uid://yphjr527njqo" path="res://Levels/Level Objects/door.tscn" id="2_xy0xx"]
 [ext_resource type="PackedScene" uid="uid://klxhy664vtkd" path="res://Levels/Level Objects/Spikes.tscn" id="5_u1dho"]
 [ext_resource type="Script" uid="uid://b2h6bu434fnig" path="res://camera_2d.gd" id="6_624pj"]
-[ext_resource type="TileSet" uid="uid://c1so64ebprpeg" path="res://Resources/background_tileset.tres" id="6_nnp38"]
+[ext_resource type="TileSet" uid="uid://c1so64ebprpeg" path="res://Resources/Tiles/background_tileset.tres" id="6_nnp38"]
+[ext_resource type="PackedScene" uid="uid://cxxsddmhowb2m" path="res://Enemies/Bat.tscn" id="7_nnp38"]
 
 [node name="TestLevel1" type="TileMapLayer"]
 texture_filter = 1
@@ -38,3 +39,6 @@ damping = 10.0
 z_index = -5
 tile_map_data = PackedByteArray("AAD4//z/AAABAAAAAAD3//z/AAAAAAAAAAD4//3/AAAEAAEAAAD3//3/AAAFAAEAAAD5//3/AAAEAAAAAAD2//z/AAAFAAAAAAD5//z/AAABAAEAAAD/////AAAAAAUAAAD///7/AAAAAAQAAAD///3/AAAAAAQAAAD///z/AAAAAAQAAAD///r/AAAAAAIAAAD///v/AAAAAAMAAAACAPz/AAAGAAMAAAACAP3/AAAGAAQAAAAFAPz/AAAGAAMAAAAFAP3/AAAGAAQAAAA=")
 tile_set = ExtResource("6_nnp38")
+
+[node name="Bat" parent="." instance=ExtResource("7_nnp38")]
+position = Vector2(20, -37)
