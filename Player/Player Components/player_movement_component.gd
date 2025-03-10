@@ -26,7 +26,7 @@ class_name PlayerMovementComponent
 @export var bounce_time: float = 0.1
 
 @export_category("Death")
-@export var on_death_bounce_amount: float = 600.0
+@export var on_death_bounce_amount: float = 100.0
 @export var on_death_bounce_count: int = 2
 
 # Internal State
@@ -77,9 +77,13 @@ func move_player(delta: float, new_direction: float) -> void:
 	if dropping:
 		if character.is_on_floor() and not bounce_counter == 2:
 			velocity.y = -on_death_bounce_amount
-			on_death_bounce_amount *= 0.8
+			on_death_bounce_amount *= 0.5
 			bounce_counter += 1	
 		velocity.y += (gravity * delta)
+		velocity.x *= 0.95
+		character.velocity = velocity
+		character.move_and_slide()
+		return
 
 
 
