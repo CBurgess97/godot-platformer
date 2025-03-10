@@ -8,6 +8,8 @@ class_name LevelManager
 @export var player: Player = null
 @export_file var starting_level: String = ""
 
+signal level_changed(level_name: String)
+
 func _ready() -> void:
 	change_level(starting_level)
 	pass
@@ -21,6 +23,10 @@ func change_level(level_path: String) -> void:
 	current_level.level_manager = self
 	add_child(current_level)
 	current_level.enter_level()
+	level_changed.emit(current_level.level_name)
 	player.move_to(current_level.spawn_point.position)
 
 	objects.clear()
+
+func get_level_name() -> String:
+	return current_level.level_name

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0apchpk7yk1g"]
+[gd_scene load_steps=7 format=3 uid="uid://d0apchpk7yk1g"]
 
 [ext_resource type="PackedScene" uid="uid://bd7qkrisyy24f" path="res://Player/player.tscn" id="1_wbfu4"]
 [ext_resource type="Script" uid="uid://ba6yv38xij2ey" path="res://Levels/level_manager.gd" id="2_sb48q"]
 [ext_resource type="Script" uid="uid://ctxhgryt0aebp" path="res://background.gd" id="4_sb48q"]
-[ext_resource type="PackedScene" uid="uid://csyy0qc4av2jt" path="res://Camera.tscn" id="5_r0x5m"]
+[ext_resource type="Script" uid="uid://b2h6bu434fnig" path="res://camera_2d.gd" id="5_r0x5m"]
 [ext_resource type="Script" uid="uid://dc3udo8cqrvmy" path="res://debug_line.gd" id="5_t88pq"]
+[ext_resource type="PackedScene" uid="uid://fbp8vx5i5ass" path="res://UserInterface.tscn" id="6_r0x5m"]
 
 [node name="Game" type="Node2D"]
 
@@ -27,5 +28,13 @@ script = ExtResource("5_t88pq")
 target_node = NodePath("../Player")
 trail_length = 400
 
-[node name="Camera2D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("5_r0x5m")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_r0x5m")
 target = NodePath("../Player")
+
+[node name="UserInterface" parent="Camera2D" node_paths=PackedStringArray("level_manager") instance=ExtResource("6_r0x5m")]
+offset_left = -80.0
+offset_top = -72.0
+offset_right = 80.0
+offset_bottom = 72.0
+level_manager = NodePath("../../LevelManager")
