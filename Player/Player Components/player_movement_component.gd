@@ -78,9 +78,11 @@ func move_player(delta: float, new_direction: float) -> void:
 		if character.is_on_floor() and not bounce_counter == 2:
 			velocity.y = -on_death_bounce_amount
 			on_death_bounce_amount *= 0.5
-			bounce_counter += 1	
+			velocity.x *= 0.5
+			bounce_counter += 1
+		elif bounce_counter == 2:
+			velocity.x = 0
 		velocity.y += (gravity * delta)
-		velocity.x *= 0.95
 		character.velocity = velocity
 		character.move_and_slide()
 		return
