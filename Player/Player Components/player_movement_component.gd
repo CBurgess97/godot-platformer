@@ -23,6 +23,7 @@ class_name PlayerMovementComponent
 @export_category("Input_Buffers")
 @export var jump_buffer_time: float = 0.1
 @export var coyote_time: float = 0.1
+@export var bounce_time: float = 0.1
 
 # Internal State
 var velocity := Vector2.ZERO
@@ -35,6 +36,7 @@ var coyote_jump_available := true
 var input_buffer: Timer
 var coyote_timer: Timer
 var mandatory_jump_timer: Timer
+var bounce_timer: Timer
 
 @onready var character: Player = get_parent()
 
@@ -57,6 +59,12 @@ func _ready() -> void:
 	mandatory_jump_timer.wait_time = mandatory_jump_time
 	mandatory_jump_timer.one_shot = true
 	add_child(mandatory_jump_timer)
+
+	# Set up bounce timer
+	bounce_timer = Timer.new()
+	bounce_timer.one_shot = true
+	bounce_timer.wait_time = bounce_time
+	add_child(bounce_timer)
 
 func move_player(delta: float, new_direction: float) -> void:
 	# Update the movement direction based on input
@@ -123,7 +131,7 @@ func update_vertical_velocity(delta) -> void:
 			jump_attempted = false
 
 	# Cut jump short when jump button is released during ascent
-	if is_jumping and mandatory_jump_timer.time_left == 0 and not Input.is_action_pressed("ui_jump"):
+	if is_jumping and mandatory_jump_timer.time_left == 0 and bounce_timer.time_left == 0 and not Input.is_action_pressed("ui_jump"):
 		velocity.y = max(velocity.y * (1 - jump_cut_multiplier), velocity.y)
 
 	# Handle landing to reset jump state
@@ -136,7 +144,7 @@ func update_vertical_velocity(delta) -> void:
 	if is_jumping:
 			if is_at_jump_peak():
 				current_gravity *= jump_peak_gravity_modifier
-			elif velocity.y > 0:
+			elif is_falling() and bounce_timer.time_left == 0:
 				current_gravity *= fall_gravity_multiplier
 
 	# Apply gravity when in air, reset downward velocity when grounded
@@ -148,7 +156,10 @@ func update_vertical_velocity(delta) -> void:
 	# Clamp maximum downward velocity
 	if velocity.y > gravity_clamp:
 		velocity.y = gravity_clamp
-	
+
+func bounce(strength: float) -> void:
+	velocity.y = -strength
+	bounce_timer.start()
 
 func coyote_timeout() -> void:
 	coyote_jump_available = false
@@ -161,3 +172,6 @@ func jump() -> void:
 
 func attempt_jump() -> void:
 	jump_attempted = true
+
+func is_falling() -> bool:
+	return velocity.y > 0

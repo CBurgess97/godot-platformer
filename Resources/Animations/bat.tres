@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bhh0fmnmgdyd3"]
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bhh0fmnmgdyd3"]
 
 [ext_resource type="Texture2D" uid="uid://72xrc10xwgnb" path="res://Resources/Sprites/Enemies/Bat.png" id="1_w4sdr"]
 
@@ -13,6 +13,10 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpysm"]
 atlas = ExtResource("1_w4sdr")
 region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4sdr"]
+atlas = ExtResource("1_w4sdr")
+region = Rect2(48, 0, 16, 16)
 
 [resource]
 animations = [{
@@ -29,4 +33,12 @@ animations = [{
 "loop": true,
 "name": &"fly",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4sdr")
+}],
+"loop": true,
+"name": &"stomp",
+"speed": 5.0
 }]
