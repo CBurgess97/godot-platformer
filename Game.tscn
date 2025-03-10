@@ -22,15 +22,10 @@ starting_level = "uid://cjmty4xitway2"
 script = ExtResource("4_sb48q")
 player = NodePath("../../Player")
 
-[node name="DebugLine" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
-visible = false
-script = ExtResource("5_t88pq")
-target_node = NodePath("../Player")
-trail_length = 400
-
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target", "user_interface")]
 script = ExtResource("5_r0x5m")
 target = NodePath("../Player")
+user_interface = NodePath("UserInterface")
 
 [node name="UserInterface" parent="Camera2D" node_paths=PackedStringArray("level_manager") instance=ExtResource("6_r0x5m")]
 offset_left = -80.0
@@ -38,3 +33,10 @@ offset_top = -72.0
 offset_right = 80.0
 offset_bottom = 72.0
 level_manager = NodePath("../../LevelManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="DebugLine" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
+visible = false
+script = ExtResource("5_t88pq")
+target_node = NodePath("../Player")
+trail_length = 400
