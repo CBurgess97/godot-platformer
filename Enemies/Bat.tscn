@@ -19,5 +19,5 @@ shape = SubResource("CircleShape2D_ngmul")
 texture_filter = 1
 sprite_frames = ExtResource("1_bkjyk")
 animation = &"fly"
-frame_progress = 0.156347
+frame_progress = 0.339702
 script = ExtResource("3_ngmul")
