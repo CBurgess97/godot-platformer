@@ -25,6 +25,9 @@ func _process(_delta: float) -> void:
 		if area.has_method("on_enter_hitbox"):
 			area.on_enter_hitbox(self)
 
+func _physics_process(_delta: float) -> void:
+	position = round(position)
+
 func move_to(_position: Vector2) -> void:
 	position = _position
 
