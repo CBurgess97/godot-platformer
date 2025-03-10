@@ -168,6 +168,10 @@ func update_vertical_velocity(delta) -> void:
 		velocity.y += (current_gravity * delta)
 	elif velocity.y > 0:
 		velocity.y = 0
+	
+	if character.is_on_ceiling():
+		if velocity.y < 0:
+			velocity.y = 0
 
 	# Clamp maximum downward velocity
 	if velocity.y > gravity_clamp:
