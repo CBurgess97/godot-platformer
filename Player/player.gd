@@ -6,7 +6,7 @@ class_name Player
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var hitbox : Area2D = $HitboxArea
-@onready var level_manager = get_parent().level_manager
+@export var level_manager : Node = null
 
 var dead = false
 
@@ -27,7 +27,8 @@ func _process(_delta: float) -> void:
 			area.on_enter_hitbox(self)
 
 func _physics_process(_delta: float) -> void:
-	position = round(position)
+	#position = round(position)
+	pass
 
 func move_to(_position: Vector2) -> void:
 	position = _position

@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0apchpk7yk1g"]
+[gd_scene load_steps=5 format=3 uid="uid://d0apchpk7yk1g"]
 
 [ext_resource type="Script" uid="uid://ba6yv38xij2ey" path="res://Levels/level_manager.gd" id="2_sb48q"]
 [ext_resource type="Script" uid="uid://ctxhgryt0aebp" path="res://background.gd" id="4_sb48q"]
 [ext_resource type="Script" uid="uid://b2h6bu434fnig" path="res://camera_2d.gd" id="5_r0x5m"]
-[ext_resource type="Script" uid="uid://dc3udo8cqrvmy" path="res://debug_line.gd" id="5_t88pq"]
 [ext_resource type="PackedScene" uid="uid://fbp8vx5i5ass" path="res://UserInterface.tscn" id="6_r0x5m"]
 
 [node name="Game" type="Node2D"]
@@ -27,8 +26,3 @@ offset_right = 80.0
 offset_bottom = 72.0
 level_manager = NodePath("../../LevelManager")
 metadata/_edit_use_anchors_ = true
-
-[node name="DebugLine" type="Node2D" parent="."]
-visible = false
-script = ExtResource("5_t88pq")
-trail_length = 400
