@@ -80,6 +80,7 @@ func move_player(delta: float, new_direction: float) -> void:
 			on_death_bounce_amount *= 0.5
 			velocity.x *= 0.5
 			bounce_counter += 1
+			character.audio_manager.bounce_sound()
 		elif bounce_counter == 2:
 			velocity.x = 0
 		velocity.y += (gravity * delta)
@@ -195,6 +196,7 @@ func is_at_jump_peak() -> bool:
 
 func jump() -> void:
 	velocity.y = jump_velocity
+	character.audio_manager.jump_sound()
 
 func attempt_jump() -> void:
 	jump_attempted = true

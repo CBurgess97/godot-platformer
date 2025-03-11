@@ -7,6 +7,7 @@ class_name Player
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var hitbox : Area2D = $HitboxArea
 @export var level_manager : Node = null
+@export var audio_manager : AudioManager = null
 
 var dead = false
 

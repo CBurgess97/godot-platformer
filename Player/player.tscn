@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bd7qkrisyy24f"]
+[gd_scene load_steps=15 format=3 uid="uid://bd7qkrisyy24f"]
 
 [ext_resource type="Script" uid="uid://bqt1arvvcsf8t" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://ch4fn16ilr8ya" path="res://Player/Player States/player_state_machine.gd" id="2_fhl08"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" uid="uid://scyi3nlhof4e" path="res://Player/player_death_state.gd" id="4_vtle1"]
 [ext_resource type="SpriteFrames" uid="uid://dw5j76iikoru7" path="res://Resources/Animations/little_knight.tres" id="5_k53q1"]
 [ext_resource type="Script" uid="uid://b1w1sm4it6t4u" path="res://Player/Player Components/player_animation_component.gd" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://bboitmbcpmsb1" path="res://Player/audio_manager.gd" id="8_x3vf3"]
+[ext_resource type="AudioStream" uid="uid://c1vb77alrgua" path="res://Resources/Sound Effects/Jump.wav" id="9_apopc"]
+[ext_resource type="AudioStream" uid="uid://ywifhflgbmke" path="res://Resources/Sound Effects/Bump.wav" id="10_5htga"]
+[ext_resource type="AudioStream" uid="uid://0iose5q3niw0" path="res://Resources/Sound Effects/Death.wav" id="11_apopc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhl08"]
 size = Vector2(8, 10)
@@ -17,9 +21,10 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vtle1"]
 radius = 4.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_manager") groups=["player"]]
 z_index = 5
 script = ExtResource("1_k53q1")
+audio_manager = NodePath("AudioManager")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_fhl08")
@@ -66,3 +71,18 @@ shape = SubResource("CircleShape2D_fhl08")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_vtle1")
+
+[node name="AudioManager" type="Node" parent="." node_paths=PackedStringArray("jump", "bounce", "death")]
+script = ExtResource("8_x3vf3")
+jump = NodePath("Jump")
+bounce = NodePath("Bounce")
+death = NodePath("Death")
+
+[node name="Jump" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("9_apopc")
+
+[node name="Bounce" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("10_5htga")
+
+[node name="Death" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("11_apopc")

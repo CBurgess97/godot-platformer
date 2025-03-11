@@ -5,6 +5,7 @@ class_name PlayerDeathState
 
 func enter():
 	player.dead = true
+	player.audio_manager.death_sound()
 	player.movement.drop()
 
 func physics_process(_delta: float) -> void:
