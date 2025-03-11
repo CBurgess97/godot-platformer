@@ -14,7 +14,7 @@ script = ExtResource("1_3mrqo")
 [node name="LevelManager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "music_manager")]
 script = ExtResource("2_sb48q")
 camera = NodePath("../Camera2D")
-starting_level = "uid://cea3g0ilrwysc"
+starting_level = "uid://dcfb42kj0armi"
 music_manager = NodePath("../MusicManager")
 
 [node name="Node2D" type="Node2D" parent="LevelManager"]
