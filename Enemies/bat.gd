@@ -6,6 +6,8 @@ extends Node2D
 @export var delete_on_death : Node = null
 @export var hover : float = 0
 
+@export var death_sound : AudioStreamPlayer = null
+
 @export var bat : Node2D = null
 
 var dead : bool = false
@@ -29,6 +31,8 @@ func _physics_process(_delta: float) -> void:
 func death() -> void:
 	death_timer.start()
 	animation.play("stomp")
+	if death_sound != null:
+		death_sound.play()
 	dead = true
 	if delete_on_death != null:
 		delete_on_death.queue_free()
