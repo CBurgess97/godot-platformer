@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://fbp8vx5i5ass"]
 
-[ext_resource type="Script" uid="uid://cfshi3mg77dj4" path="res://user_interface.gd" id="1_mf2t3"]
-[ext_resource type="StyleBox" uid="uid://cipa17lndqtsy" path="res://box.tres" id="2_kshx1"]
-[ext_resource type="LabelSettings" uid="uid://bh8clyeo7ag4x" path="res://text_settings.tres" id="4_irkc5"]
+[ext_resource type="Script" uid="uid://cfshi3mg77dj4" path="res://Components/user_interface.gd" id="1_mf2t3"]
+[ext_resource type="StyleBox" uid="uid://cipa17lndqtsy" path="res://Resources/box.tres" id="2_kshx1"]
+[ext_resource type="LabelSettings" uid="uid://bh8clyeo7ag4x" path="res://Resources/text_settings.tres" id="4_irkc5"]
 
 [node name="UserInterface" type="Control" node_paths=PackedStringArray("level_name_label", "time_label")]
 layout_mode = 3

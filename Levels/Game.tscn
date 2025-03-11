@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0apchpk7yk1g"]
+
+[ext_resource type="Script" uid="uid://bmckjtdv2h32t" path="res://Components/game_manager.gd" id="1_d5jmm"]
+[ext_resource type="Script" uid="uid://ba6yv38xij2ey" path="res://Levels/level_manager.gd" id="2_n3tvm"]
+[ext_resource type="Script" uid="uid://ctxhgryt0aebp" path="res://Components/background.gd" id="3_y58dp"]
+[ext_resource type="Script" uid="uid://b2h6bu434fnig" path="res://Components/camera_2d.gd" id="4_i12b1"]
+[ext_resource type="PackedScene" uid="uid://fbp8vx5i5ass" path="res://Components/UserInterface.tscn" id="5_yl7kl"]
+[ext_resource type="AudioStream" uid="uid://dsas34yvvtmc5" path="res://Resources/Music/Chase.wav" id="6_tx4co"]
+[ext_resource type="Script" uid="uid://c4baohr8itmch" path="res://Components/music_manager.gd" id="7_h107k"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_d5jmm")
+
+[node name="LevelManager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "music_manager")]
+script = ExtResource("2_n3tvm")
+camera = NodePath("../Camera2D")
+starting_level = "uid://dcfb42kj0armi"
+music_manager = NodePath("../MusicManager")
+
+[node name="Node2D" type="Node2D" parent="LevelManager"]
+script = ExtResource("3_y58dp")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("user_interface")]
+script = ExtResource("4_i12b1")
+user_interface = NodePath("UserInterface")
+camera_horizontal_offset = 40.0
+
+[node name="UserInterface" parent="Camera2D" node_paths=PackedStringArray("level_manager") instance=ExtResource("5_yl7kl")]
+offset_left = -80.0
+offset_top = -72.0
+offset_right = 80.0
+offset_bottom = 72.0
+level_manager = NodePath("../../LevelManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicManager" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tx4co")
+volume_db = -20.0
+autoplay = true
+script = ExtResource("7_h107k")
