@@ -21,9 +21,8 @@ func update_animation() -> void:
 			character.animation.play("fall")
 		
 	if character.dead:
-		if character.velocity.y < 0:
-			character.animation.play("dead_fall")
-		else:
+		character.animation.play("dead_fall")
+		if character.is_on_floor():
 			character.animation.play("dead")
 			
 	if facing_right and character.velocity.x < -10:
