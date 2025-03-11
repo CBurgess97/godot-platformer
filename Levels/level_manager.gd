@@ -25,7 +25,6 @@ func change_level(level_path: String) -> void:
 	add_child(current_level)
 	current_level.enter_level()
 	level_changed.emit(current_level.level_name)
-	music_manager.reset_music()
 	camera.target = current_level.player
 	current_level.player.level_manager = self
 
@@ -36,6 +35,7 @@ func get_level_name() -> String:
 
 func reload_current_level():
 	change_level(current_level.level_path)
+	music_manager.reset_music()
 	pass
 
 func stop_music():
