@@ -26,7 +26,7 @@ func _physics_process(delta):
 		real_position.y = lerp(position.y, target.position.y, damping * delta)
 
 	if track_horizontal:
-		real_position.x = lerp(position.x, target.position.x, damping * delta) + camera_horizontal_offset
+		real_position.x = target.position.x + camera_horizontal_offset
 	
 	
 	# snap position to whole values

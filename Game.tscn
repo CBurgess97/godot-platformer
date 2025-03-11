@@ -23,6 +23,7 @@ script = ExtResource("4_sb48q")
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("user_interface")]
 script = ExtResource("5_r0x5m")
 user_interface = NodePath("UserInterface")
+camera_horizontal_offset = 40.0
 
 [node name="UserInterface" parent="Camera2D" node_paths=PackedStringArray("level_manager") instance=ExtResource("6_r0x5m")]
 offset_left = -80.0
