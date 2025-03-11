@@ -10,7 +10,7 @@
 [node name="LevelManager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("2_sb48q")
 camera = NodePath("../Camera2D")
-starting_level = "uid://cjmty4xitway2"
+starting_level = "uid://cea3g0ilrwysc"
 
 [node name="Node2D" type="Node2D" parent="LevelManager"]
 script = ExtResource("4_sb48q")
