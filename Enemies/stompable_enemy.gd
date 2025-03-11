@@ -15,6 +15,7 @@ func _on_stomp_box_body_entered(body : Node) -> void:
 			body.movement.bounce(bounce_force)
 			if enemy.has_method("death"):
 				enemy.death()
+				queue_free()
 		else:
 			body.change_state("death")
 	pass
