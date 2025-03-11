@@ -35,3 +35,7 @@ func get_level_name() -> String:
 func reload_current_level():
 	change_level(current_level.level_path)
 	pass
+
+func stop_music():
+	current_level.music_manager.stop_music()
+	pass
