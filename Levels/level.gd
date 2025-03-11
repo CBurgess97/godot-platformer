@@ -6,7 +6,6 @@ class_name Level
 @export var player : Player = null
 
 @onready var level_manager: LevelManager = null
-@onready var spawn_point : Node2D = $SpawnPoint
 
 
 var objects: Array[LevelObject] = []
