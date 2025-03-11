@@ -7,6 +7,7 @@ class_name LevelManager
 
 @export var camera: Camera2D = null
 @export_file var starting_level: String = ""
+@export var music_manager: MusicManager = null
 
 signal level_changed(level_name: String)
 
@@ -24,6 +25,7 @@ func change_level(level_path: String) -> void:
 	add_child(current_level)
 	current_level.enter_level()
 	level_changed.emit(current_level.level_name)
+	music_manager.reset_music()
 	camera.target = current_level.player
 	current_level.player.level_manager = self
 
@@ -37,5 +39,5 @@ func reload_current_level():
 	pass
 
 func stop_music():
-	current_level.music_manager.stop_music()
+	music_manager.stop_music()
 	pass

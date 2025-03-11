@@ -4,7 +4,6 @@ class_name Level
 @export var level_name: String = ""
 @export_file var level_path: String = ""
 @export var player : Player = null
-@export var music_manager : MusicManager = null
 
 @onready var level_manager: LevelManager = null
 
