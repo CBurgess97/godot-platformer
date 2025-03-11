@@ -1,17 +1,18 @@
 extends Node2D
 
-@onready var animation : AnimatedSprite2D = $AnimatedSprite2D
-@onready var anim_player : AnimationPlayer = $AnimationPlayer
+@export var animation : AnimatedSprite2D = null
+@export var anim_player : AnimationPlayer = null
 
+@export var delete_on_death : Node = null
 @export var hover : float = 0
+
+@export var bat : Node2D = null
 
 var dead : bool = false
 var death_timer : Timer
 var death_time : float = 0.4
 
 func _ready() -> void:
-	animation.play("fly")
-	anim_player.play("bat_hover")
 	death_timer = Timer.new()
 	add_child(death_timer)
 	death_timer.one_shot = true
@@ -22,12 +23,12 @@ func _process(_delta: float) -> void:
 		queue_free()
 
 func _physics_process(_delta: float) -> void:
-	position.y = hover
-	position = round(position)
+	bat.position.y = hover
+	bat.position = round(bat.position)
 
 func death() -> void:
 	death_timer.start()
 	animation.play("stomp")
 	dead = true
-
-	pass
+	if delete_on_death != null:
+		delete_on_death.queue_free()

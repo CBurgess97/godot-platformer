@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxxsddmhowb2m"]
+[gd_scene load_steps=8 format=3 uid="uid://cxxsddmhowb2m"]
 
 [ext_resource type="SpriteFrames" uid="uid://bhh0fmnmgdyd3" path="res://Resources/Animations/bat.tres" id="1_bkjyk"]
 [ext_resource type="Script" uid="uid://byytkcacjptlh" path="res://Enemies/bat.gd" id="1_eneur"]
 [ext_resource type="Script" uid="uid://d1cqj7icicgdc" path="res://Enemies/stompable_enemy.gd" id="2_xa3dn"]
-[ext_resource type="Script" uid="uid://dkohlm861do2" path="res://Enemies/bat_animation.gd" id="3_ngmul"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngmul"]
 radius = 5.0
@@ -15,12 +14,12 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:hover")
+tracks/0/path = NodePath("..:hover")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.99),
-"transitions": PackedFloat32Array(-2, 1),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [-2.0, 2.0]
 }
@@ -42,7 +41,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:hover")
+tracks/1/path = NodePath("..:hover")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -58,30 +57,34 @@ _data = {
 &"bat_hover": SubResource("Animation_eneur")
 }
 
-[node name="Bat Root" type="Node2D"]
-
-[node name="Bat" type="Node2D" parent="."]
+[node name="Bat Root" type="Node2D" node_paths=PackedStringArray("animation", "anim_player", "bat")]
 script = ExtResource("1_eneur")
+animation = NodePath("Bat Container/AnimatedSprite2D")
+anim_player = NodePath("Bat Container/AnimationPlayer")
 hover = -2.0
+bat = NodePath("Bat Container")
 
-[node name="Stompable_Enemy" type="Node" parent="Bat" node_paths=PackedStringArray("stomp_box")]
+[node name="Bat Container" type="Node2D" parent="."]
+
+[node name="Stompable_Enemy" type="Node" parent="Bat Container" node_paths=PackedStringArray("stomp_box", "enemy")]
 script = ExtResource("2_xa3dn")
 stomp_box = NodePath("../Stompbox")
+enemy = NodePath("../..")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bat"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bat Container"]
 texture_filter = 1
 sprite_frames = ExtResource("1_bkjyk")
-animation = &"fly"
-frame_progress = 0.384688
-script = ExtResource("3_ngmul")
+animation = &"stomp"
+autoplay = "fly"
 
-[node name="Stompbox" type="Area2D" parent="Bat"]
+[node name="Stompbox" type="Area2D" parent="Bat Container"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/Stompbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat Container/Stompbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ngmul")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Bat"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bat Container"]
 libraries = {
 &"": SubResource("AnimationLibrary_5xogs")
 }
+autoplay = "bat_hover"
