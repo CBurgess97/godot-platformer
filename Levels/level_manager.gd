@@ -25,6 +25,7 @@ func change_level(level_path: String) -> void:
 	current_level.enter_level()
 	level_changed.emit(current_level.level_name)
 	camera.target = current_level.player
+	current_level.player.level_manager = self
 
 	objects.clear()
 
