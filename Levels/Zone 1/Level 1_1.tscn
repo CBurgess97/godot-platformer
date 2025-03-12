@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dcfb42kj0armi"]
+[gd_scene load_steps=9 format=4 uid="uid://dcfb42kj0armi"]
 
 [ext_resource type="TileSet" uid="uid://c5q4k17vfyqa0" path="res://Resources/Tiles/castle.tres" id="1_pnrit"]
 [ext_resource type="Script" uid="uid://uaqrhl73rrfd" path="res://Levels/level.gd" id="2_3afxp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cxxsddmhowb2m" path="res://Enemies/Bat.tscn" id="5_3afxp"]
 [ext_resource type="PackedScene" uid="uid://klxhy664vtkd" path="res://Levels/Level Objects/Spikes.tscn" id="6_0lxt7"]
 [ext_resource type="PackedScene" uid="uid://yphjr527njqo" path="res://Levels/Level Objects/door.tscn" id="8_2t5tg"]
+[ext_resource type="LabelSettings" uid="uid://bh8clyeo7ag4x" path="res://Resources/text_settings.tres" id="8_iqbme"]
 
 [node name="Level11" type="TileMapLayer" node_paths=PackedStringArray("player")]
 texture_filter = 1
@@ -98,3 +99,11 @@ position = Vector2(2376, -8)
 [node name="Door" parent="." instance=ExtResource("8_2t5tg")]
 position = Vector2(2488, -8)
 target_scene = "uid://cbhvbtl15b08r"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 2458.0
+offset_top = -32.0
+offset_right = 2588.0
+offset_bottom = -9.0
+text = "Press UP"
+label_settings = ExtResource("8_iqbme")
