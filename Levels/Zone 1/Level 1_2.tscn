@@ -139,10 +139,10 @@ position = Vector2(2056, -8)
 position = Vector2(2072, -8)
 
 [node name="Bat Root" parent="Spikes5" instance=ExtResource("5_isojc")]
-position = Vector2(-1154, -23)
+position = Vector2(-1152, -34)
 
 [node name="Bat Root2" parent="Spikes5" instance=ExtResource("5_isojc")]
-position = Vector2(-1023, -22)
+position = Vector2(-1023, -33)
 
 [node name="Bat Root3" parent="Spikes5" instance=ExtResource("5_isojc")]
 position = Vector2(-936, -69)

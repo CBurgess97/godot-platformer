@@ -1,7 +1,7 @@
 extends Camera2D
 
 @export var target: Node2D = null
-@export var user_interface: Node = null
+@export var user_interface: UserInterface = null
 @export var track_vertical: bool = false
 @export var track_horizontal: bool = true
 @export var vertical_offset: float = -40.0

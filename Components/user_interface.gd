@@ -1,4 +1,5 @@
 extends Control
+class_name UserInterface
 
 
 @export var level_name_label: Label = null
@@ -7,12 +8,15 @@ extends Control
 
 var level_name: String = ""
 var time_elapsed: float = 0
+var timeer_stopped: bool = false
 
 func initialize():
 	level_name_label.text = level_manager.get_level_name()
 	level_manager.connect("level_changed", _on_level_changed)
 
 func _process(delta):
+	if timeer_stopped:
+		return
 	time_elapsed += delta
 	var minutes = floor((time_elapsed / 60))
 	var seconds = time_elapsed - (minutes * 60)

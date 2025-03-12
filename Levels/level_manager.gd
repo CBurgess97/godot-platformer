@@ -21,8 +21,8 @@ func change_level(level_path: String) -> void:
 		current_level.exit_level()
 		current_level.queue_free()
 	current_level = load(level_path).instantiate()
-	current_level.level_manager = self
 	add_child(current_level)
+	current_level.level_manager = self
 	current_level.enter_level()
 	level_changed.emit(current_level.level_name)
 	camera.target = current_level.player
