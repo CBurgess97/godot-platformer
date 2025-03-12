@@ -97,4 +97,4 @@ position = Vector2(2376, -8)
 
 [node name="Door" parent="." instance=ExtResource("8_2t5tg")]
 position = Vector2(2488, -8)
-target_scene = "uid://cea3g0ilrwysc"
+target_scene = "uid://cbhvbtl15b08r"
