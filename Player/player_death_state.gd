@@ -15,4 +15,3 @@ func physics_process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("ui_restart"):
 		player.level_manager.reload_current_level()
-	print("Player is dead!")
