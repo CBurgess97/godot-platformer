@@ -10,9 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Platformer"
+config/name="Little Knight"
+config/description="Little knight - A platformer I made in one week to learn Godot"
+config/version="1.0.0"
 run/main_scene="uid://cnbre1en4qvry"
 config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="uid://b4q33jr36mie3"
+config/windows_native_icon="res://icon.ico"
 
 [display]
 
@@ -54,4 +58,5 @@ ui_start={
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(1, 0.964706, 0.827451, 1)
