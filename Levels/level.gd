@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func enter_level() -> void:
 	level_manager = get_parent()
+	player.level_manager = level_manager
 	for object in objects:
 		object.enter_level()
 	pass

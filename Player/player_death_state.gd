@@ -7,6 +7,7 @@ func enter():
 	player.dead = true
 	player.audio_manager.death_sound()
 	player.level_manager.stop_music()
+	player.level_manager.camera.user_interface.reset_prompt.visible = true
 	player.movement.drop()
 
 func physics_process(_delta: float) -> void:

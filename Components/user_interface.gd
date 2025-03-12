@@ -5,6 +5,7 @@ class_name UserInterface
 @export var level_name_label: Label = null
 @export var time_label: Label = null
 @export var level_manager : LevelManager = null
+@export var reset_prompt : Label = null
 
 var level_name: String = ""
 var time_elapsed: float = 0

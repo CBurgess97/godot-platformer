@@ -4,17 +4,18 @@
 [ext_resource type="StyleBox" uid="uid://cipa17lndqtsy" path="res://Resources/box.tres" id="2_kshx1"]
 [ext_resource type="LabelSettings" uid="uid://bh8clyeo7ag4x" path="res://Resources/text_settings.tres" id="4_irkc5"]
 
-[node name="UserInterface" type="Control" node_paths=PackedStringArray("level_name_label", "time_label")]
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("level_name_label", "time_label", "reset_prompt")]
 layout_mode = 3
 anchor_top = 0.792
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -0.0480042
+offset_top = -114.048
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_mf2t3")
 level_name_label = NodePath("LevelName")
 time_label = NodePath("Timer")
+reset_prompt = NodePath("ResetPrompt")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -29,6 +30,23 @@ offset_right = 80.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = ExtResource("2_kshx1")
+
+[node name="ResetPrompt" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.519
+anchor_top = 0.132
+anchor_right = 0.519
+anchor_bottom = 0.132
+offset_left = -83.04
+offset_top = -0.00799942
+offset_right = 82.96
+offset_bottom = 22.992
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press B or 'R' to reset "
+label_settings = ExtResource("4_irkc5")
 
 [node name="LevelName" type="Label" parent="."]
 texture_filter = 1
